@@ -1,0 +1,31 @@
+{
+    "extends": "eslint:recommended",
+    "parserOptions": {
+        "ecmaVersion": 2023
+    },
+    "env": {
+        "browser": true
+    },
+    "rules": {
+        "strict": [
+            "error",
+            "global"
+        ],
+        // Valeurs par défaut :
+        // "no-undef": "warn",
+        // "no-use-before-define": "error",
+
+        "camelcase": "warn",
+        "comma-style": [
+            "warn",
+            "last"
+        ],
+        "no-lonely-if": "warn",
+        "semi": [
+            "error",
+            "always"
+        ],
+        "no-var": "warn",
+        "no-unused-vars": "warn"
+    }
+}
