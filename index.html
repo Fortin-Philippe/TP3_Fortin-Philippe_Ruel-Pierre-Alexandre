@@ -9,23 +9,32 @@
 les champs et de poursuivre le quiz à l'aide du javascript, si le formulaire est valide.  -->
 <form action="" id="formulaireDepart" style="padding: 20px;">
 
-    <label for="">Label1</label>
+    <label id="Nom" for="">Nom</label>
     <br>
     <input type="text">
+    <span class="msgErreur" id="msgErreurnom"></span>
     <br>
-    <label for="">Label2</label>
+    <label id="prenom" for="">Prenom</label>
     <br>
     <input type="text">
+    <span class="msgErreur" id="msgErreurprenom"></span>
     <br>
 
-    <label for="">Label3</label>
+    <label for="">email</label>
+    <br>
+    <input type="text">
+    <span class="msgErreur" id="msgErreuremail"></span>
+    <br>
+    <label for="">mots de passe</label>
     <br>
     <input type="text">
     <br>
-    [...]
+    <label for="">Confirmation mots de passe</label>
+    <br>
+    <input type="text">
+    <span class="msgErreur" id="msgErreurmdp"></span>
     <br>
     <br>
-
     <input type="button" id="btnIgnorer" value="Ignorer">
     <input type="button" id="btnCommencer" value="Commencer">
 </form>

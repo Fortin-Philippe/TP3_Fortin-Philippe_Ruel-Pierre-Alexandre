@@ -59,12 +59,48 @@ function gererBoutonCommencer()
 	let formulaireEstValide = false;
 
 	//1) Valider chaque champ du formulaire selon les critères de l'énoncé
-	/*
-	[...]
-	[...]
-	[...]
-	*/
+	let PrenomValide = false;
+	let NomValide = false;
+    let MotDePasseValide = false;
+	let emailValide = false;
 
+	let prenom = document.getElementById("prenom").value;
+	let nom = document.getElementById("nom").value;
+    let motDePasse = document.getElementById("motdepasse").value;
+	let confirmationmotdepasse = document.getElementById("confirmationemail").value;
+	let email = document.getElementById("email").value;
+
+	if(prenom == "")
+	{
+		document.getElementById("msgErreurprenom").textContent = "erreur";
+	}
+	else
+	{
+		PrenomValide = true;
+		document.getElementById("msgErreurprenom").textContent = "";
+	}
+
+	if(nom == "")
+	{
+		document.getElementById("msgErreurnom").textContent = "erreur";
+	}
+	else
+	{
+		PrenomValide = true;
+		document.getElementById("msgErreurnom").textContent = "";
+	}
+	if(motDePasse == ""){
+		if(motDePasse.length >= 8){
+			document.getElementById("msgErreurmdp").textContent = "";
+			motDePasse = true;
+		}
+		else{
+			document.getElementById("msgErreurmdp").textContent = "erreur";
+		}
+	}
+	else{
+		document.getElementById("msgErreurmdp").textContent = "erreur";
+	}
 	// 2) Rendu ici, on devrait savoir si tous les champs sont valides ou si au moins 1 champ est invalide
 	if(formulaireEstValide)
 	{
@@ -80,7 +116,7 @@ function gererBoutonCommencer()
 		// le ou les champs invalides.
 	}
 	
-}  
+} 
 /* ### FIN - SECTION FONCTIONS */
 
 
