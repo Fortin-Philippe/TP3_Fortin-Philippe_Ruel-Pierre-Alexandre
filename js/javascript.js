@@ -142,7 +142,10 @@ function gererBoutonCommencer() {
 			formulaireDepart.remove();
 			const div = document.createElement("div");
 			div.id = "questionnaire";
-
+			//Bouton soumettre
+			const btnSoumettre = document.createElement("button");
+			btnSoumettre.textContent = "Suivant";
+			btnSoumettre.addEventListener("click");
 			
 
 		}
