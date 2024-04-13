@@ -53,9 +53,9 @@ donnees[1].réponse;        -> 1
 
 function gererBoutonCommencer() {
 	// Retirer cette alert une fois le bouton complété
-	
 
-	
+
+
 
 	//1) Valider chaque champ du formulaire selon les critères de l'énoncé
 	let PrenomValide = false;
@@ -81,7 +81,7 @@ function gererBoutonCommencer() {
 		PrenomValide = true;
 		document.getElementById("msgErreurprenom").textContent = "";
 	}
-	
+
 	// Validation du nom
 	if (nom == "") {
 		document.getElementById("msgErreurnom").textContent = "Le champs ne peut etre vide";
@@ -105,48 +105,60 @@ function gererBoutonCommencer() {
 		document.getElementById("msgErreurmdp").textContent = "Le champs ne peut etre vide";
 	}
 
-    // Validation de la confirmation
-	if(confirmationmotdepasse != motDePasse){
+	// Validation de la confirmation
+	if (confirmationmotdepasse != motDePasse) {
 		document.getElementById("msgErreurconfirmationmdp").textContent = "N'est pas identique";
 	}
-	else{
+	else {
 		document.getElementById("msgErreurconfirmationmdp").textContent = "";
 		confirmationmotdepassevalide = true;
 
 	}
 
 	// Validation du email
-	if(email == "" || emailParts.length !== 2 ){
+	if (email == "" || emailParts.length !== 2) {
 		document.getElementById("msgErreuremail").textContent = "Email invalide";
 	}
-	else{
+	else {
 		emailValide = true;
 	}
 
 	// validation du formulaire
-	if(PrenomValide && NomValide && emailValide && confirmationmotdepassevalide && MotDePasseValide){
+	if (PrenomValide && NomValide && emailValide && confirmationmotdepassevalide && MotDePasseValide) {
 		alert("entree reussite");
 		formulaireEstValide = true;
 	}
-	
 
 
 
 
-	// 2) Rendu ici, on devrait savoir si tous les champs sont valides ou si au moins 1 champ est invalide
-	if (formulaireEstValide) {
-		// Si le formulaire est valide, on peut maintenant supprimer en javascript la balise form (incluant tout son contenu)
-		// et commencer à créer en javascript la première question, ses choix de réponses, ainsi que le bouton "Soumettre", qui sera utiliser avancer dans le quiz
-		// d'une question à l'autre
-		// Attention de conserver les informations du formulaire (avant de supprimer celui-ci) dans des variables javascripts car vous en aurez besoin
-		// tout au long du quiz (ex. le prénom et le nom)
+
+	// 2) Rendu ici, on devrait savoir si tous les champs sont valides ou si au moins 1 champ est invalide.
+
+
+	function GenererQuiz() {
+		if (formulaireEstValide) {
+			let formulaireDepart = document.getElementById("formulaireDepart");
+			formulaireDepart.remove();
+			
+
+		}
+
+
+
 	}
-	else {
-		// Si le formulaire est invalide, on ne poursuit pas vers le quiz, donc on ne fait rien : l'utilisateur doit corriger
-		// le ou les champs invalides.
-	}
+	// Si le formulaire est valide, on peut maintenant supprimer en javascript la balise form (incluant tout son contenu)
+	// et commencer à créer en javascript la première question, ses choix de réponses, ainsi que le bouton "Soumettre", qui sera utiliser avancer dans le quiz
+	// d'une question à l'autre
+	// Attention de conserver les informations du formulaire (avant de supprimer celui-ci) dans des variables javascripts car vous en aurez besoin
+
+
+	// tout au long du quiz (ex. le prénom et le nom)
 
 }
+
+
+
 /* ### FIN - SECTION FONCTIONS */
 
 
