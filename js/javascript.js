@@ -140,6 +140,9 @@ function gererBoutonCommencer() {
 		if (formulaireEstValide) {
 			let formulaireDepart = document.getElementById("formulaireDepart");
 			formulaireDepart.remove();
+			const div = document.createElement("div");
+			div.id = "questionnaire";
+
 			
 
 		}
