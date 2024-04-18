@@ -130,29 +130,15 @@ function gererBoutonCommencer() {
 	}
 
 
-
+	if (formulaireEstValide) {
+		GenererQuiz;
+	}
 
 
 	// 2) Rendu ici, on devrait savoir si tous les champs sont valides ou si au moins 1 champ est invalide.
 
 
-	function GenererQuiz() {
-		if (formulaireEstValide) {
-			let formulaireDepart = document.getElementById("formulaireDepart");
-			formulaireDepart.remove();
-			const div = document.createElement("div");
-			div.id = "questionnaire";
-			//Bouton soumettre
-			const btnSoumettre = document.createElement("button");
-			btnSoumettre.textContent = "Suivant";
-			btnSoumettre.addEventListener("click");
-			
 
-		}
-
-
-
-	}
 	// Si le formulaire est valide, on peut maintenant supprimer en javascript la balise form (incluant tout son contenu)
 	// et commencer à créer en javascript la première question, ses choix de réponses, ainsi que le bouton "Soumettre", qui sera utiliser avancer dans le quiz
 	// d'une question à l'autre
@@ -164,7 +150,23 @@ function gererBoutonCommencer() {
 }
 
 
+function GenererQuiz() {
 
+	let formulaireDepart = document.getElementById("formulaireDepart");
+	formulaireDepart.remove();
+	const div = document.createElement("div");
+	div.id = "questionnaire";
+	//Bouton soumettre
+	const btnSoumettre = document.createElement("button");
+	btnSoumettre.textContent = "Suivant";
+	btnSoumettre.addEventListener("click");
+
+
+
+
+
+
+}
 /* ### FIN - SECTION FONCTIONS */
 
 
@@ -178,7 +180,7 @@ function initialisation() {
 	}
 
 	document.getElementById("btnCommencer").addEventListener("click", gererBoutonCommencer);
-
+	document.getElementById("btnstartquiz").addEventListener("click", GenererQuiz);
 	// TODO...
 }
 
