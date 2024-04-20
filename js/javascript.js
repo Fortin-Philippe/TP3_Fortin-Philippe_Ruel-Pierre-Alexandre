@@ -6,20 +6,32 @@
 let donnees =
 	[
 		{
-			"question": "À quoi sert un aria-label?",
+			"question": "Durant la guerre des Clones, un seigneur sith tire les ficelles des deux cotés afin de corrompre le sénat galactique ainsi que l'alliance séparatiste. Quelle est sa véritable identité ?",
 			"réponses": [
-				"Ajouter du contenu textuel sur une balise pour aider les lecteurs d'écran",
-				"À rien",
-				"Je ne sais pas"
+				"Darth Jar-Jar",
+				"Count Dooku",
+				"Darth Sidious",
+				"Darth Tyranus"
+			],
+			"réponse": 2
+		},
+		{
+			"question": "À la fin de la guerre des clones, le chancelier Palpatine ordonne à tous les soldats clones de la grande armée de la république d'anéantire les jedis. Quel est le code de cet ordre ?",
+			"réponses": [
+				"66",
+				"501",
+				"99",
+				"46"
 			],
 			"réponse": 0
 		},
 		{
-			"question": "HTML vient de :",
+			"question": "Durant la guerre des Clones, Ahsoka est accusé par le Sénat et est banni de l'ordre Jedi pour un crime qu'elle n'a pas commis. Qui est le traitre ?",
 			"réponses": [
-				"Hyper Typo Meta Lol",
-				"Hypertext markup language",
-				"Je ne sais pas"
+				"Assaj Ventress",
+				"Bariss Offee",
+				"Pong Krell",
+				"Savage Opress"
 			],
 			"réponse": 1
 		}
@@ -142,6 +154,7 @@ function gererBoutonCommencer() {
 	// Si le formulaire est valide, on peut maintenant supprimer en javascript la balise form (incluant tout son contenu)
 	// et commencer à créer en javascript la première question, ses choix de réponses, ainsi que le bouton "Soumettre", qui sera utiliser avancer dans le quiz
 	// d'une question à l'autre
+	
 	// Attention de conserver les informations du formulaire (avant de supprimer celui-ci) dans des variables javascripts car vous en aurez besoin
 
 
@@ -160,12 +173,6 @@ function GenererQuiz() {
 	const btnSoumettre = document.createElement("button");
 	btnSoumettre.textContent = "Suivant";
 	btnSoumettre.addEventListener("click");
-
-
-
-
-
-
 }
 /* ### FIN - SECTION FONCTIONS */
 
