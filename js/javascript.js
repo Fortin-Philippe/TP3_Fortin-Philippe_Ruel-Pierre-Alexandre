@@ -155,6 +155,10 @@ function gererBoutonCommencer() {
 	// et commencer à créer en javascript la première question, ses choix de réponses, ainsi que le bouton "Soumettre", qui sera utiliser avancer dans le quiz
 	// d'une question à l'autre
 	
+		
+
+
+	
 	// Attention de conserver les informations du formulaire (avant de supprimer celui-ci) dans des variables javascripts car vous en aurez besoin
 
 
@@ -167,15 +171,38 @@ function GenererQuiz() {
 
 	let formulaireDepart = document.getElementById("formulaireDepart");
 	formulaireDepart.remove();
-	const div = document.createElement("div");
-	div.id = "questionnaire";
+	const divQuestionnaire = document.createElement("div");
+	divQuestionnaire.id = "questionnaire";
+	document.body.appendChild(divQuestionnaire);
 	//Bouton soumettre
 	const btnSoumettre = document.createElement("button");
 	btnSoumettre.textContent = "Suivant";
 	btnSoumettre.addEventListener("click");
 }
 /* ### FIN - SECTION FONCTIONS */
+function CreationQuestion(donnees) 
+{
+	const uneQuestion = document.createElement('div');
+	uneQuestion.classList.add('question');
 
+	const textQuestion = document.createElement("p");
+	textQuestion.textContent = donnees.question;
+	uneQuestion.appendChild(textQuestion);
+	
+	donnees.options.forEach((option, index) => {
+		const choixReponse = document.createElement("label");
+
+		const radioButton= document.createElement("input");
+		radioButton.type = "radio";
+		radioButton.name = 'question-${index}';
+		radioButton.value = index;
+		choixReponse.appendChild(radioButton);
+        const txtQuestion = document.createTextNode(option);
+		choixReponse.appendChild(txtQuestion);
+		uneQuestion.appendChild(choixReponse);
+	});
+	return uneQuestion;
+}
 
 
 function initialisation() {
