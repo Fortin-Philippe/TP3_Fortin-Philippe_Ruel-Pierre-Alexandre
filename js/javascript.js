@@ -238,26 +238,9 @@ function AffichageQuestion(numeroQuestion) {
 	const textQuestion = document.createElement("p");
 	textQuestion.textContent = uneQuestion.question;
 	divQuestion.appendChild(textQuestion);
-	//Condition if à faire pour différencier type 1 et type 2
-	CreationQuestionPremierType(uneQuestion, divQuestion);
-	//Bouton suivant
-	const btnSuivant = document.createElement("button");
-	btnSuivant.textContent = "Suivant";
-	btnSuivant.addEventListener("click", () => {
-		GererSuivant(numeroQuestion + 1);
-	});
-	divQuestion.appendChild(btnSuivant);
-
-	divQuestionnaire = document.getElementById("questionnaire");
-	divQuestionnaire.appendChild(divQuestion);
-}
-function CreationQuestionPremierType(uneQuestion, divQuestion) {
-
+	
 	uneQuestion.réponses.forEach((option, index) => {
 		const choixReponse = document.createElement("label");
-		
-
-
 		const radioButton = document.createElement("input");
 		radioButton.type = "radio";
 		radioButton.name = `question-${uneQuestion.id}`;
@@ -270,7 +253,18 @@ function CreationQuestionPremierType(uneQuestion, divQuestion) {
 		divQuestion.appendChild(choixReponse);
 		divQuestion.appendChild(document.createElement("br"));
 	});
+	//Bouton suivant
+	const btnSuivant = document.createElement("button");
+	btnSuivant.textContent = "Suivant";
+	btnSuivant.addEventListener("click", () => {
+		GererSuivant(numeroQuestion + 1);
+	});
+	divQuestion.appendChild(btnSuivant);
+
+	divQuestionnaire = document.getElementById("questionnaire");
+	divQuestionnaire.appendChild(divQuestion);
 }
+
 function GererSuivant(prochaineQuestion) {
 	if (prochaineQuestion < donnees.length) {
 		const questionnaire = document.getElementById("questionnaire");
