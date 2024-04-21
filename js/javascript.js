@@ -164,7 +164,7 @@ function GenererQuiz() {
 
 	CreationHeader();
 	AffichageQuestion(0);
-	
+	CreationFooter();
 
 }
 function CreationHeader() {
@@ -227,7 +227,13 @@ function GererSuivant(prochaineQuestion) {
 	}
 
 }
-
+function CreationFooter(){
+	const footerFormulaire = document.createElement("footer");
+	const messageEtudiant = document.createElement("p");
+	messageEtudiant.textContent = "Site Web développé par Philippe Fortin et Pierre-Alexandre Ruel";
+	footerFormulaire.appendChild(messageEtudiant);
+	document.body.appendChild(footerFormulaire);
+}
 
 // Attention de conserver les informations du formulaire (avant de supprimer celui-ci) dans des variables javascripts car vous en aurez besoin
 
