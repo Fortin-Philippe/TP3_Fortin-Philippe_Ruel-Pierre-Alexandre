@@ -34,6 +34,36 @@ let donnees =
 				"Savage Opress"
 			],
 			"réponse": 1
+		},
+		{
+			"question": "Avant les événements de la guerre des clone Obi-Wan Kenobi etais le padawan du jedi ?",
+			"réponses": [
+				"Anakin Skywalker",
+				" Yoda",
+				"Mace Windu",
+				" Qui-Gon Jinn"
+			],
+			"réponse": 3
+		},
+		{
+			"question": "Mace Windu a une couleur particuliere pour son sabre, qu'elle est cette couleur ?",
+			"réponses": [
+				"rose",
+				"mauve",
+				"orange",
+				"noir"
+			],
+			"réponse": 1
+		},
+		{
+			"question": "Quelle est le nom du droid de navigation de Anakin Skywalker ?",
+			"réponses": [
+				"R2-D2",
+				"BB-8",
+				"R5-D4",
+				"S2-D2"
+			],
+			"réponse": 0
 		}
 	];
 
@@ -274,7 +304,7 @@ function initialisation() {
 	}
 
 	document.getElementById("btnCommencer").addEventListener("click", gererBoutonCommencer);
-	document.getElementById("btnstartquiz").addEventListener("click", GenererQuiz);
+	
 	// TODO...
 }
 
