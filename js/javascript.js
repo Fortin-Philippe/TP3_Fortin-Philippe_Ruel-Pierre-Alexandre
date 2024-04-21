@@ -255,10 +255,12 @@ function CreationQuestionPremierType(uneQuestion, divQuestion) {
 
 	uneQuestion.réponses.forEach((option, index) => {
 		const choixReponse = document.createElement("label");
+		
+
 
 		const radioButton = document.createElement("input");
 		radioButton.type = "radio";
-		radioButton.name = `question-${index}`;
+		radioButton.name = `question-${uneQuestion.id}`;
 		radioButton.value = index;
 		choixReponse.appendChild(radioButton);
 
@@ -266,6 +268,7 @@ function CreationQuestionPremierType(uneQuestion, divQuestion) {
 		choixReponse.appendChild(txtQuestion);
 
 		divQuestion.appendChild(choixReponse);
+		divQuestion.appendChild(document.createElement("br"));
 	});
 }
 function GererSuivant(prochaineQuestion) {
@@ -277,6 +280,7 @@ function GererSuivant(prochaineQuestion) {
 
 }
 function CreationFooter() {
+	
 	const footerFormulaire = document.createElement("footer");
 	const messageEtudiant = document.createElement("p");
 	messageEtudiant.textContent = "Site Web développé par Philippe Fortin et Pierre-Alexandre Ruel";
