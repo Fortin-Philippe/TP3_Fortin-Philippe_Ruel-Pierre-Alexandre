@@ -118,7 +118,7 @@ function gererBoutonCommencer() {
 
 	// Validation du prenom
 	if (prenom == "") {
-		document.getElementById("msgErreurprenom").textContent = "Le champs ne peut etre vide";
+		document.getElementById("msgErreurprenom").textContent = "Veuillez remplir le champ.";
 	}
 	else {
 		PrenomValide = true;
@@ -127,7 +127,7 @@ function gererBoutonCommencer() {
 
 	// Validation du nom
 	if (nom == "") {
-		document.getElementById("msgErreurnom").textContent = "Le champs ne peut etre vide";
+		document.getElementById("msgErreurnom").textContent = "Veuillez remplir le champ.";
 	}
 	else {
 		NomValide = true;
@@ -145,7 +145,7 @@ function gererBoutonCommencer() {
 		}
 	}
 	else {
-		document.getElementById("msgErreurmdp").textContent = "Le champs ne peut etre vide";
+		document.getElementById("msgErreurmdp").textContent = "Veuillez remplir le champ.";
 	}
 
 	// Validation de la confirmation
@@ -298,13 +298,14 @@ function AfficherResultat() {
 	questionnaire.innerHTML = "";
 	const nombreDeBonneReponses = ObtenirNombreDeBonneReponse();
 	const pourcentageResultat = (nombreDeBonneReponses / donnees.length) * 100;
+	const pourcentageFormate = pourcentageResultat.toFixed(2);
 
 	const textResultatNom = document.createElement("p");
-	textResultatNom.textContent = `Résultat pour ${prenomUtilisateur},${nomUtilisateur}`;
+	textResultatNom.textContent = `Résultat pour ${prenomUtilisateur} ${nomUtilisateur}`;
 	questionnaire.appendChild(textResultatNom);
 
 	const textPourcentage = document.createElement("p");
-	textPourcentage.textContent = `${pourcentageResultat}%`;
+	textPourcentage.textContent = `${pourcentageFormate}%`;
 	questionnaire.appendChild(textPourcentage);
 }
 function ObtenirNombreDeBonneReponse() {
