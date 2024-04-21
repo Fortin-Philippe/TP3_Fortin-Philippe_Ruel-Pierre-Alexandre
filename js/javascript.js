@@ -61,7 +61,8 @@ donnees[1].réponse;        -> 1
 // Vos fonctions
 // ..
 // ..
-
+let prenomUtilisateur;
+let nomUtilisateur;
 
 function gererBoutonCommencer() {
 	// Retirer cette alert une fois le bouton complété
@@ -139,10 +140,13 @@ function gererBoutonCommencer() {
 	if (PrenomValide && NomValide && emailValide && confirmationmotdepassevalide && MotDePasseValide) {
 		alert("entree reussite");
 		formulaireEstValide = true;
+		
 	}
 
 
 	if (formulaireEstValide) {
+		prenomUtilisateur=prenom;
+		nomUtilisateur=nom;
 		GenererQuiz();
 	}
 }
@@ -152,19 +156,37 @@ function gererBoutonCommencer() {
 // Si le formulaire est valide, on peut maintenant supprimer en javascript la balise form (incluant tout son contenu)
 // et commencer à créer en javascript la première question, ses choix de réponses, ainsi que le bouton "Soumettre", qui sera utiliser avancer dans le quiz
 // d'une question à l'autre
-function GenererQuiz() {
 
+function GenererQuiz() {
+	
 	const formulaireDepart = document.getElementById("formulaireDepart");
 	formulaireDepart.remove();
 
-	const formQuestionnaire = document.createElement("form");
-	formQuestionnaire.id = "questionnaire";
-	document.body.appendChild(formQuestionnaire);
-
+	CreationHeader();
 	AffichageQuestion(0);
+	
+
+}
+function CreationHeader() {
+
+	const headerFormulaire = document.createElement("header");
+	const titreFormulaire = document.createElement("h1");
+	titreFormulaire.textContent = "Quiz Star Wars The Clone Wars";
+	headerFormulaire.appendChild(titreFormulaire);
+
+	let divNomPrenom = document.createElement("div");
+	divNomPrenom.textContent = `Bonjour ${prenomUtilisateur} ${nomUtilisateur} !`;
+	headerFormulaire.appendChild(divNomPrenom);
+
+	document.body.appendChild(headerFormulaire);
 
 }
 function AffichageQuestion(numeroQuestion) {
+
+	let formQuestionnaire = document.createElement("form");
+	formQuestionnaire.id = "questionnaire";
+	document.body.appendChild(formQuestionnaire);
+
 	const uneQuestion = donnees[numeroQuestion];
 	const divQuestion = document.createElement('div');
 	divQuestion.classList.add('question');
@@ -190,30 +212,27 @@ function AffichageQuestion(numeroQuestion) {
 	const btnSuivant = document.createElement("button");
 	btnSuivant.textContent = "Suivant";
 	btnSuivant.addEventListener("click", () => {
-		gererSuivant(numeroQuestion + 1);
+		GererSuivant(numeroQuestion + 1);
 	});
 	divQuestion.appendChild(btnSuivant);
 
-	const formQuestionnaire = document.getElementById("questionnaire");
+	formQuestionnaire = document.getElementById("questionnaire");
 	formQuestionnaire.appendChild(divQuestion);
 }
-function gererSuivant(prochaineQuestion)
-{
-	if(prochaineQuestion < donnees.length){
+function GererSuivant(prochaineQuestion) {
+	if (prochaineQuestion < donnees.length) {
 		const questionnaire = document.getElementById("questionnaire");
-		questionnaire.innerHTML= "";
+		questionnaire.innerHTML = "";
 		AffichageQuestion(prochaineQuestion);
 	}
-	
+
 }
 
 
+// Attention de conserver les informations du formulaire (avant de supprimer celui-ci) dans des variables javascripts car vous en aurez besoin
 
 
-	// Attention de conserver les informations du formulaire (avant de supprimer celui-ci) dans des variables javascripts car vous en aurez besoin
-
-
-	// tout au long du quiz (ex. le prénom et le nom)
+// tout au long du quiz (ex. le prénom et le nom)
 
 
 
