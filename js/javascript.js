@@ -93,7 +93,7 @@ donnees[1].réponse;        -> 1
 // ..
 let prenomUtilisateur;
 let nomUtilisateur;
-
+let reponsesUtilisateur = [];
 function gererBoutonCommencer() {
 	// Retirer cette alert une fois le bouton complété
 
@@ -234,16 +234,16 @@ function AffichageQuestion(numeroQuestion) {
 	const uneQuestion = donnees[numeroQuestion];
 	const divQuestion = document.createElement('div');
 	divQuestion.classList.add('question');
-//Texte de la question
+	//Texte de la question
 	const textQuestion = document.createElement("p");
 	textQuestion.textContent = uneQuestion.question;
 	divQuestion.appendChild(textQuestion);
-	
+
 	uneQuestion.réponses.forEach((option, index) => {
 		const choixReponse = document.createElement("label");
 		const radioButton = document.createElement("input");
 		radioButton.type = "radio";
-		radioButton.name = `question-${uneQuestion.id}`;
+		radioButton.name = `question-${numeroQuestion}`;
 		radioButton.value = index;
 		choixReponse.appendChild(radioButton);
 
@@ -266,15 +266,25 @@ function AffichageQuestion(numeroQuestion) {
 }
 
 function GererSuivant(prochaineQuestion) {
+
+	const choixUtilisateur = document.querySelector(`input[name="question-${prochaineQuestion - 1}"]:checked`);
+	if (choixUtilisateur) {
+		reponsesUtilisateur[reponsesUtilisateur.length] = parseInt(choixUtilisateur.value);
+	} else {
+		reponsesUtilisateur[reponsesUtilisateur.length] = null;
+	}
+	const questionnaire = document.getElementById("questionnaire");
+	questionnaire.innerHTML = "";
 	if (prochaineQuestion < donnees.length) {
-		const questionnaire = document.getElementById("questionnaire");
-		questionnaire.innerHTML = "";
 		AffichageQuestion(prochaineQuestion);
+	}
+	else {
+		AfficherResultat();
 	}
 
 }
 function CreationFooter() {
-	
+
 	const footerFormulaire = document.createElement("footer");
 	const messageEtudiant = document.createElement("p");
 	messageEtudiant.textContent = "Site Web développé par Philippe Fortin et Pierre-Alexandre Ruel";
@@ -283,8 +293,32 @@ function CreationFooter() {
 }
 
 // Attention de conserver les informations du formulaire (avant de supprimer celui-ci) dans des variables javascripts car vous en aurez besoin
+function AfficherResultat() {
+	const questionnaire = document.getElementById("questionnaire");
+	questionnaire.innerHTML = "";
+	const nombreDeBonneReponses = ObtenirNombreDeBonneReponse();
+	const pourcentageResultat = (nombreDeBonneReponses / donnees.length) * 100;
 
+	const textResultatNom = document.createElement("p");
+	textResultatNom.textContent = `Résultat pour ${prenomUtilisateur},${nomUtilisateur}`;
+	questionnaire.appendChild(textResultatNom);
 
+	const textPourcentage = document.createElement("p");
+	textPourcentage.textContent = `${pourcentageResultat}%`;
+	questionnaire.appendChild(textPourcentage);
+}
+function ObtenirNombreDeBonneReponse() {
+	let nombreDeBonneReponses = 0;
+	for (let i = 0; i < donnees.length; i++) {
+		const bonneReponse = donnees[i].réponse;
+		const reponseUtilisateur = reponsesUtilisateur[i];
+		if (reponseUtilisateur == bonneReponse && reponseUtilisateur != undefined) {
+			nombreDeBonneReponses++;
+		}
+	}
+	return nombreDeBonneReponses;
+
+}
 // tout au long du quiz (ex. le prénom et le nom)
 
 
@@ -302,7 +336,7 @@ function initialisation() {
 	}
 
 	document.getElementById("btnCommencer").addEventListener("click", gererBoutonCommencer);
-	
+
 	// TODO...
 }
 
