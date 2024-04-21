@@ -189,24 +189,39 @@ function AffichageQuestion(numeroQuestion) {
 	if (!divAvancementQuestion) {
 		divAvancementQuestion = document.createElement("div");
 		divAvancementQuestion.id = "avancementQuestion";
-		divAvancementQuestion.textContent = `Question ${numeroQuestion+1}/${totalQuestion}`;
+		divAvancementQuestion.textContent = `Question ${numeroQuestion + 1}/${totalQuestion}`;
 		document.body.appendChild(divAvancementQuestion);
 
 	}
-else{
-	divAvancementQuestion.textContent=`Question ${numeroQuestion +1}/${totalQuestion}`;
-}
-	let formQuestionnaire = document.createElement("form");
-	formQuestionnaire.id = "questionnaire";
-	document.body.appendChild(formQuestionnaire);
+	else {
+		divAvancementQuestion.textContent = `Question ${numeroQuestion + 1}/${totalQuestion}`;
+	}
+	//Création d'une div questionnaire.
+	let divQuestionnaire = document.createElement("div");
+	divQuestionnaire.id = "questionnaire";
+	document.body.appendChild(divQuestionnaire);
 
 	const uneQuestion = donnees[numeroQuestion];
 	const divQuestion = document.createElement('div');
 	divQuestion.classList.add('question');
-
+//Texte de la question
 	const textQuestion = document.createElement("p");
 	textQuestion.textContent = uneQuestion.question;
 	divQuestion.appendChild(textQuestion);
+	//Condition if à faire pour différencier type 1 et type 2
+	CreationQuestionPremierType(uneQuestion, divQuestion);
+	//Bouton suivant
+	const btnSuivant = document.createElement("button");
+	btnSuivant.textContent = "Suivant";
+	btnSuivant.addEventListener("click", () => {
+		GererSuivant(numeroQuestion + 1);
+	});
+	divQuestion.appendChild(btnSuivant);
+
+	divQuestionnaire = document.getElementById("questionnaire");
+	divQuestionnaire.appendChild(divQuestion);
+}
+function CreationQuestionPremierType(uneQuestion, divQuestion) {
 
 	uneQuestion.réponses.forEach((option, index) => {
 		const choixReponse = document.createElement("label");
@@ -222,15 +237,6 @@ else{
 
 		divQuestion.appendChild(choixReponse);
 	});
-	const btnSuivant = document.createElement("button");
-	btnSuivant.textContent = "Suivant";
-	btnSuivant.addEventListener("click", () => {
-		GererSuivant(numeroQuestion + 1);
-	});
-	divQuestion.appendChild(btnSuivant);
-
-	formQuestionnaire = document.getElementById("questionnaire");
-	formQuestionnaire.appendChild(divQuestion);
 }
 function GererSuivant(prochaineQuestion) {
 	if (prochaineQuestion < donnees.length) {
