@@ -143,66 +143,82 @@ function gererBoutonCommencer() {
 
 
 	if (formulaireEstValide) {
-		GenererQuiz;
+		GenererQuiz();
 	}
+}
 
+// 2) Rendu ici, on devrait savoir si tous les champs sont valides ou si au moins 1 champ est invalide.
 
-	// 2) Rendu ici, on devrait savoir si tous les champs sont valides ou si au moins 1 champ est invalide.
+// Si le formulaire est valide, on peut maintenant supprimer en javascript la balise form (incluant tout son contenu)
+// et commencer à créer en javascript la première question, ses choix de réponses, ainsi que le bouton "Soumettre", qui sera utiliser avancer dans le quiz
+// d'une question à l'autre
+function GenererQuiz() {
 
+	const formulaireDepart = document.getElementById("formulaireDepart");
+	formulaireDepart.remove();
 
+	const formQuestionnaire = document.createElement("form");
+	formQuestionnaire.id = "questionnaire";
+	document.body.appendChild(formQuestionnaire);
 
-	// Si le formulaire est valide, on peut maintenant supprimer en javascript la balise form (incluant tout son contenu)
-	// et commencer à créer en javascript la première question, ses choix de réponses, ainsi que le bouton "Soumettre", qui sera utiliser avancer dans le quiz
-	// d'une question à l'autre
+	AffichageQuestion(0);
+
+}
+function AffichageQuestion(numeroQuestion) {
+	const uneQuestion = donnees[numeroQuestion];
+	const divQuestion = document.createElement('div');
+	divQuestion.classList.add('question');
+
+	const textQuestion = document.createElement("p");
+	textQuestion.textContent = uneQuestion.question;
+	divQuestion.appendChild(textQuestion);
+
+	uneQuestion.réponses.forEach((option, index) => {
+		const choixReponse = document.createElement("label");
+
+		const radioButton = document.createElement("input");
+		radioButton.type = "radio";
+		radioButton.name = `question-${index}`;
+		radioButton.value = index;
+		choixReponse.appendChild(radioButton);
+
+		const txtQuestion = document.createTextNode(option);
+		choixReponse.appendChild(txtQuestion);
+
+		divQuestion.appendChild(choixReponse);
+	});
+	const btnSuivant = document.createElement("button");
+	btnSuivant.textContent = "Suivant";
+	btnSuivant.addEventListener("click", () => {
+		gererSuivant(numeroQuestion + 1);
+	});
+	divQuestion.appendChild(btnSuivant);
+
+	const formQuestionnaire = document.getElementById("questionnaire");
+	formQuestionnaire.appendChild(divQuestion);
+}
+function gererSuivant(prochaineQuestion)
+{
+	if(prochaineQuestion < donnees.length){
+		const questionnaire = document.getElementById("questionnaire");
+		questionnaire.innerHTML= "";
+		AffichageQuestion(prochaineQuestion);
+	}
 	
-		
+}
 
 
-	
+
+
 	// Attention de conserver les informations du formulaire (avant de supprimer celui-ci) dans des variables javascripts car vous en aurez besoin
 
 
 	// tout au long du quiz (ex. le prénom et le nom)
 
-}
 
 
-function GenererQuiz() {
-
-	let formulaireDepart = document.getElementById("formulaireDepart");
-	formulaireDepart.remove();
-	const divQuestionnaire = document.createElement("div");
-	divQuestionnaire.id = "questionnaire";
-	document.body.appendChild(divQuestionnaire);
-	//Bouton soumettre
-	const btnSoumettre = document.createElement("button");
-	btnSoumettre.textContent = "Suivant";
-	btnSoumettre.addEventListener("click");
-}
 /* ### FIN - SECTION FONCTIONS */
-function CreationQuestion(donnees) 
-{
-	const uneQuestion = document.createElement('div');
-	uneQuestion.classList.add('question');
 
-	const textQuestion = document.createElement("p");
-	textQuestion.textContent = donnees.question;
-	uneQuestion.appendChild(textQuestion);
-	
-	donnees.options.forEach((option, index) => {
-		const choixReponse = document.createElement("label");
-
-		const radioButton= document.createElement("input");
-		radioButton.type = "radio";
-		radioButton.name = 'question-${index}';
-		radioButton.value = index;
-		choixReponse.appendChild(radioButton);
-        const txtQuestion = document.createTextNode(option);
-		choixReponse.appendChild(txtQuestion);
-		uneQuestion.appendChild(choixReponse);
-	});
-	return uneQuestion;
-}
 
 
 function initialisation() {
