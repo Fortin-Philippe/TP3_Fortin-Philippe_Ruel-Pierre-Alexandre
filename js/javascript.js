@@ -140,13 +140,13 @@ function gererBoutonCommencer() {
 	if (PrenomValide && NomValide && emailValide && confirmationmotdepassevalide && MotDePasseValide) {
 		alert("entree reussite");
 		formulaireEstValide = true;
-		
+
 	}
 
 
 	if (formulaireEstValide) {
-		prenomUtilisateur=prenom;
-		nomUtilisateur=nom;
+		prenomUtilisateur = prenom;
+		nomUtilisateur = nom;
 		GenererQuiz();
 	}
 }
@@ -158,7 +158,7 @@ function gererBoutonCommencer() {
 // d'une question à l'autre
 
 function GenererQuiz() {
-	
+
 	const formulaireDepart = document.getElementById("formulaireDepart");
 	formulaireDepart.remove();
 
@@ -181,8 +181,21 @@ function CreationHeader() {
 	document.body.appendChild(headerFormulaire);
 
 }
-function AffichageQuestion(numeroQuestion) {
 
+function AffichageQuestion(numeroQuestion) {
+	const totalQuestion = donnees.length;
+
+	let divAvancementQuestion = document.getElementById("avancementQuestion");
+	if (!divAvancementQuestion) {
+		divAvancementQuestion = document.createElement("div");
+		divAvancementQuestion.id = "avancementQuestion";
+		divAvancementQuestion.textContent = `Question ${numeroQuestion+1}/${totalQuestion}`;
+		document.body.appendChild(divAvancementQuestion);
+
+	}
+else{
+	divAvancementQuestion.textContent=`Question ${numeroQuestion +1}/${totalQuestion}`;
+}
 	let formQuestionnaire = document.createElement("form");
 	formQuestionnaire.id = "questionnaire";
 	document.body.appendChild(formQuestionnaire);
@@ -227,7 +240,7 @@ function GererSuivant(prochaineQuestion) {
 	}
 
 }
-function CreationFooter(){
+function CreationFooter() {
 	const footerFormulaire = document.createElement("footer");
 	const messageEtudiant = document.createElement("p");
 	messageEtudiant.textContent = "Site Web développé par Philippe Fortin et Pierre-Alexandre Ruel";
