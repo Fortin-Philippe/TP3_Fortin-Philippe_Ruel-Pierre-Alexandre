@@ -48,10 +48,10 @@ let donnees =
 		{
 			"question": "Mace Windu a une couleur particuliere pour son sabre, qu'elle est cette couleur ?",
 			"réponses": [
-				"rose",
-				"mauve",
-				"orange",
-				"noir"
+				"Rose",
+				"Mauve",
+				"Orange",
+				"Noir"
 			],
 			"réponse": 1
 		},
@@ -177,9 +177,7 @@ function gererBoutonCommencer() {
 
 	// validation du formulaire
 	if (PrenomValide && NomValide && emailValide && confirmationmotdepassevalide && MotDePasseValide) {
-		alert("entree reussite");
 		formulaireEstValide = true;
-
 	}
 
 
@@ -221,7 +219,7 @@ function CreationHeader() {
 	headerFormulaire.appendChild(divNomPrenom);
 
 	document.body.appendChild(headerFormulaire);
-
+    headerFormulaire.classList.add("container");
 }
 
 
@@ -245,6 +243,7 @@ function AffichageQuestion(numeroQuestion) {
 		divAvancementQuestion = document.createElement("div");
 		divAvancementQuestion.id = "avancementQuestion";
 		divAvancementQuestion.textContent = `Question ${numeroQuestion + 1}/${totalQuestion}`;
+		divAvancementQuestion.classList.add("container");
 		document.body.appendChild(divAvancementQuestion);
 
 	}
@@ -258,6 +257,7 @@ function AffichageQuestion(numeroQuestion) {
 
 	const uneQuestion = donnees[numeroQuestion];
 	const divQuestion = document.createElement('div');
+	
 	divQuestion.classList.add('question');
 	//Texte de la question
 	const textQuestion = document.createElement("p");
@@ -290,6 +290,8 @@ function AffichageQuestion(numeroQuestion) {
 
 	divQuestionnaire = document.getElementById("questionnaire");
 	divQuestionnaire.appendChild(divQuestion);
+	divQuestionnaire.classList.add("container");
+	
 }
 
 function GererSuivant(prochaineQuestion) {
@@ -319,12 +321,14 @@ function CreationFooter() {
 	messageEtudiant.textContent = "Site Web développé par Philippe Fortin et Pierre-Alexandre Ruel";
 	footerFormulaire.appendChild(messageEtudiant);
 	document.body.appendChild(footerFormulaire);
+	footerFormulaire.classList.add("container");
 }
 
 // Attention de conserver les informations du formulaire (avant de supprimer celui-ci) dans des variables javascripts car vous en aurez besoin
 function AfficherResultat() {
 	const questionnaire = document.getElementById("questionnaire");
 	questionnaire.innerHTML = "";
+	
 	const nombreDeBonneReponses = ObtenirNombreDeBonneReponse();
 	const pourcentageResultat = (nombreDeBonneReponses / donnees.length) * 100;
 	const pourcentageFormate = pourcentageResultat.toFixed(2);
