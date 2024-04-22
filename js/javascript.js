@@ -199,27 +199,17 @@ function GenererQuiz() {
 	const formulaireDepart = document.getElementById("formulaireDepart");
 	formulaireDepart.remove();
 
-	CreationHeader();
+	SalutationsHeader();
 	
 	AffichageQuestion(0);
 
 	CreationFooter();
 
 }
-function CreationHeader() {
+function SalutationsHeader() {
 
-	const headerFormulaire = document.getElementById("header");
-	const titreFormulaire = document.createElement("h1");
-	titreFormulaire.textContent = "Quiz Star Wars The Clone Wars";
-	headerFormulaire.appendChild(titreFormulaire);
-
-	let divSalutations = document.createElement("div");
-	divSalutations.id = "divSalutations";
+	let divSalutations = document.getElementById("divSalutations");
 	divSalutations.textContent = `Bonjour ${prenomUtilisateur} ${nomUtilisateur} !`;
-	headerFormulaire.appendChild(divSalutations);
-
-	document.body.appendChild(headerFormulaire);
-    headerFormulaire.classList.add("container");
 }
 
 
@@ -238,6 +228,7 @@ function AffichageQuestion(numeroQuestion) {
 		divAvancementQuestion.id = "avancementQuestion";
 		divAvancementQuestion.textContent = `Question ${numeroQuestion + 1}/${totalQuestion}`;
 		divAvancementQuestion.classList.add("container");
+
 		document.body.appendChild(divAvancementQuestion);
 	}
 	else {
