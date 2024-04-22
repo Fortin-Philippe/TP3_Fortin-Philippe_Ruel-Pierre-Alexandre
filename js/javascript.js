@@ -203,20 +203,20 @@ function GenererQuiz() {
 	
 	AffichageQuestion(0);
 
-
 	CreationFooter();
 
 }
 function CreationHeader() {
 
-	const headerFormulaire = document.createElement("header");
+	const headerFormulaire = document.getElementById("header");
 	const titreFormulaire = document.createElement("h1");
 	titreFormulaire.textContent = "Quiz Star Wars The Clone Wars";
 	headerFormulaire.appendChild(titreFormulaire);
 
-	let divNomPrenom = document.createElement("div");
-	divNomPrenom.textContent = `Bonjour ${prenomUtilisateur} ${nomUtilisateur} !`;
-	headerFormulaire.appendChild(divNomPrenom);
+	let divSalutations = document.createElement("div");
+	divSalutations.id = "divSalutations";
+	divSalutations.textContent = `Bonjour ${prenomUtilisateur} ${nomUtilisateur} !`;
+	headerFormulaire.appendChild(divSalutations);
 
 	document.body.appendChild(headerFormulaire);
     headerFormulaire.classList.add("container");
@@ -231,12 +231,6 @@ function AffichageQuestion(numeroQuestion) {
 	const progress = ((numeroQuestion + 1)/ totalQuestion) * 100;
 	progressBar.style.width = `${progress}%`;
     progressBar.setAttribute('aria-valuenow', progress);
-	
-	
-	
-
-
-
 
 	let divAvancementQuestion = document.getElementById("avancementQuestion");
 	if (!divAvancementQuestion) {
@@ -302,7 +296,6 @@ function GererSuivant(prochaineQuestion) {
 		reponsesUtilisateur[reponsesUtilisateur.length] = null;
 	}
 
-
 	const questionnaire = document.getElementById("questionnaire");
 	questionnaire.innerHTML = "";
 	if (prochaineQuestion < donnees.length) {
@@ -315,7 +308,7 @@ function GererSuivant(prochaineQuestion) {
 }
 function CreationFooter() {
 
-	const footerFormulaire = document.createElement("footer");
+	const footerFormulaire = document.getElementById("footer");
 	const messageEtudiant = document.createElement("p");
 	messageEtudiant.textContent = "Site Web développé par Philippe Fortin et Pierre-Alexandre Ruel";
 	footerFormulaire.appendChild(messageEtudiant);
