@@ -8,51 +8,68 @@
 </head>
 <body>
 <header id="header">
+<h1>Quiz Star Wars The Clone Wars</h1>
+<div id="divSalutations">
 
+</div>
 </header>
 
 
 <!--Le formulaire n'a aucune "Action" car le but n'est pas d'envoyer les données au serveur, mais plutôt de valider
 les champs et de poursuivre le quiz à l'aide du javascript, si le formulaire est valide.  -->
-<form action="" id="formulaireDepart" style="padding: 20px;">
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <form action="" id="formulaireDepart" style="padding: 20px;">
+                <div class="row mb-3">
+                    <label for="Nom" class="col-sm-3 col-form-label">Nom</label>
+                    <div class="col-sm-9">
+                        <input id="Nom" type="text" class="form-control">
+                        <span class="msgErreur" id="msgErreurnom"></span>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="prenom" class="col-sm-3 col-form-label">Prenom</label>
+                    <div class="col-sm-9">
+                        <input type="text" id="prenom" class="form-control">
+                        <span class="msgErreur" id="msgErreurprenom"></span>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="email" class="col-sm-3 col-form-label">Email</label>
+                    <div class="col-sm-9">
+                        <input id="email" type="text" class="form-control">
+                        <span class="msgErreur" id="msgErreuremail"></span>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="mdp" class="col-sm-3 col-form-label">Mot de passe</label>
+                    <div class="col-sm-9">
+                        <input type="password" id="mdp" class="form-control">
+                        <span class="msgErreur" id="msgErreurmdp"></span>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="mdpconfirmation" class="col-sm-3 col-form-label">Confirmation mot de passe</label>
+                    <div class="col-sm-9">
+                        <input type="password" id="mdpconfirmation" class="form-control">
+                        <span class="msgErreur" id="msgErreurconfirmationmdp"></span>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-sm-12">
+                        <input type="button" id="btnIgnorer" class="btn btn-secondary me-2" value="Ignorer">
+                        <input type="button" id="btnCommencer" class="btn btn-primary" value="Commencer">
+                    </div>
+                </div>
+            </form>
+        </div>
 
-    <label for="Nom">nom</label>
-    <br>
-    <input id="Nom" type="text">
-    <br>
-    <span class="msgErreur" id="msgErreurnom"></span>
-    <br>
-    <label for="prenom">Prenom</label>
-    <br>
-    <input type="text" id="prenom">
-    <br>
-    <span class="msgErreur" id="msgErreurprenom"></span>
-    <br>
-
-    <label for="email" >email</label>
-    <br>
-    <input id="email" type="text">
-    <br>
-    <span class="msgErreur" id="msgErreuremail"></span>
-    <br>
-    <label for="mdp" >mots de passe</label>
-    <br>
-    <input type="text" id="mdp">
-    <br>
-    <span class="msgErreur" id="msgErreurmdp"></span>
-    <br>
-    <br>
-    <label for="mdpconfirmation" >Confirmation mots de passe</label>
-    <br>
-    <input type="text" id="mdpconfirmation">
-    <br>
-    <span class="msgErreur" id="msgErreurconfirmationmdp"></span>
-    <br>
-    <br>
-    <input type="button" id="btnIgnorer" value="Ignorer">
-    <input type="button" id="btnCommencer" value="Commencer">
-    
-</form>
+        <div class="col-md-6">
+            <img src="img\Page-Principale.jpg" alt="" class="img-fluid">
+        </div>
+    </div>
+</div>
 
     <div class="container mt-5" id="progressbarID">
         
@@ -64,8 +81,8 @@ les champs et de poursuivre le quiz à l'aide du javascript, si le formulaire es
         <div id="zone-question"></div>
       
       </div>
-<footer id="footer" >
-
+<footer id="footer">
+<p>Site Web développé par Philippe Fortin et Pierre-Alexandre Ruel.</p>
 </footer>
 <img src="" alt="">
     <script src="js/javascript.js"></script>
