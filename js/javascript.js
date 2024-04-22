@@ -371,7 +371,9 @@ function ObtenirNombreDeBonneReponse() {
 
 
 /* ### FIN - SECTION FONCTIONS */
-
+function refreshInfo(){
+	location.reload(true);
+}
 
 
 function initialisation() {
@@ -383,7 +385,7 @@ function initialisation() {
 	}
 
 	document.getElementById("btnCommencer").addEventListener("click", gererBoutonCommencer);
-
+	document.getElementById("btnIgnorer").addEventListener("click", refreshInfo);
 	// Passer à la question suivante
 
 	// TODO...

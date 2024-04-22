@@ -1,70 +1,90 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
+
 <head>
     <meta charset="utf-8" />
     <title>Titre de la page (À MODIFIER)</title>
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">    <link rel="stylesheet" href="css/styles.css" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/styles.css" />
 </head>
+
 <body>
+
+
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6">
+                <form action="" id="formulaireDepart" style="padding: 20px;">
+                    <div class="row mb-3">
+                        <label for="Nom" class="col-sm-3 col-form-label">Nom</label>
+                        <div class="col-sm-9">
+                            <input id="Nom" type="text" class="form-control">
+                            <span class="msgErreur" id="msgErreurnom"></span>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="prenom" class="col-sm-3 col-form-label">Prenom</label>
+                        <div class="col-sm-9">
+                            <input type="text" id="prenom" class="form-control">
+                            <span class="msgErreur" id="msgErreurprenom"></span>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="email" class="col-sm-3 col-form-label">Email</label>
+                        <div class="col-sm-9">
+                            <input id="email" type="text" class="form-control">
+                            <span class="msgErreur" id="msgErreuremail"></span>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="mdp" class="col-sm-3 col-form-label">Mot de passe</label>
+                        <div class="col-sm-9">
+                            <input type="password" id="mdp" class="form-control">
+                            <span class="msgErreur" id="msgErreurmdp"></span>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="mdpconfirmation" class="col-sm-3 col-form-label">Confirmation mot de passe</label>
+                        <div class="col-sm-9">
+                            <input type="password" id="mdpconfirmation" class="form-control">
+                            <span class="msgErreur" id="msgErreurconfirmationmdp"></span>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-sm-12">
+                            <input type="button" id="btnIgnorer" class="btn btn-secondary me-2" value="Ignorer">
+                            <input type="button" id="btnCommencer" class="btn btn-primary" value="Commencer">
+                        </div>
+                    </div>
+                </form>
+            </div>
     
-
-
-<!--Le formulaire n'a aucune "Action" car le but n'est pas d'envoyer les données au serveur, mais plutôt de valider
-les champs et de poursuivre le quiz à l'aide du javascript, si le formulaire est valide.  -->
-<form action="" id="formulaireDepart" style="padding: 20px;">
-
-    <label for="Nom">nom</label>
-    <br>
-    <input id="Nom" type="text">
-    <br>
-    <span class="msgErreur" id="msgErreurnom"></span>
-    <br>
-    <label for="prenom">Prenom</label>
-    <br>
-    <input type="text" id="prenom">
-    <br>
-    <span class="msgErreur" id="msgErreurprenom"></span>
-    <br>
-
-    <label for="email" >email</label>
-    <br>
-    <input id="email" type="text">
-    <br>
-    <span class="msgErreur" id="msgErreuremail"></span>
-    <br>
-    <label for="mdp" >mots de passe</label>
-    <br>
-    <input type="text" id="mdp">
-    <br>
-    <span class="msgErreur" id="msgErreurmdp"></span>
-    <br>
-    <br>
-    <label for="mdpconfirmation" >Confirmation mots de passe</label>
-    <br>
-    <input type="text" id="mdpconfirmation">
-    <br>
-    <span class="msgErreur" id="msgErreurconfirmationmdp"></span>
-    <br>
-    <br>
-    <input type="button" id="btnIgnorer" value="Ignorer">
-    <input type="button" id="btnCommencer" value="Commencer">
-    
-</form>
-
-    <div class="container mt-5" id="progressbarID">
-        
-        <!-- Barre de progression -->
-        <div class="progress mt-3" id="progressbar">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="col-md-6">
+                <img src="img\Page-Principale.jpg" alt="" class="img-fluid">
+            </div>
         </div>
-        <!-- Zone de question dynamique -->
-        <div id="zone-question"></div>
-      
-      </div>
+    </div>
+    <div class="container mt-5" id="progressbarID">
 
-<img src="" alt="">
+
+        <div class="progress mt-3" id="progressbar">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 0%;" aria-valuenow="0"
+                aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+
+        <div id="zone-question"></div>
+    </div>
+    </div>
+
+    <img src="" alt="">
     <script src="js/javascript.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script></body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
 </body>
+</body>
+
 </html>
