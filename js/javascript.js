@@ -307,6 +307,19 @@ function AfficherResultat() {
 	const textPourcentage = document.createElement("p");
 	textPourcentage.textContent = `${pourcentageFormate}%`;
 	questionnaire.appendChild(textPourcentage);
+
+	if (pourcentageFormate >= 60) {
+		let imageReussite = document.createElement("img");
+		imageReussite.src = "img/reussite.jpg";
+		imageReussite.alt = "Image de réussite.";
+		document.body.appendChild(imageReussite);
+	}
+	else {
+		let imageEchec = document.createElement("img");
+		imageEchec.src = "img/echec.jpg";
+		imageEchec.alt = "Image d'échec.";
+		document.body.appendChild(imageEchec);
+	}
 }
 function ObtenirNombreDeBonneReponse() {
 	let nombreDeBonneReponses = 0;
