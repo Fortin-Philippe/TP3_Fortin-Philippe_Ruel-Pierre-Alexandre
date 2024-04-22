@@ -94,6 +94,10 @@ donnees[1].réponse;        -> 1
 let prenomUtilisateur;
 let nomUtilisateur;
 let reponsesUtilisateur = [];
+let divProgress = document.getElementById("progressbarID");
+
+
+divProgress.style.display = "none";
 function gererBoutonCommencer() {
 	// Retirer cette alert une fois le bouton complété
 
@@ -116,6 +120,11 @@ function gererBoutonCommencer() {
 	let email = document.getElementById("email").value;
 	const emailParts = email.split("@");
 
+
+	let divProgress = document.getElementById("progressbarID");
+
+
+	divProgress.style.display = "none";
 	// Validation du prenom
 	if (prenom == "") {
 		document.getElementById("msgErreurprenom").textContent = "Veuillez remplir le champ.";
@@ -193,7 +202,10 @@ function GenererQuiz() {
 	formulaireDepart.remove();
 
 	CreationHeader();
+	
 	AffichageQuestion(0);
+
+
 	CreationFooter();
 
 }
@@ -212,8 +224,21 @@ function CreationHeader() {
 
 }
 
+
+let totalQuestion = donnees.length;
+let progressBar = document.querySelector('.progress-bar');
+
 function AffichageQuestion(numeroQuestion) {
-	const totalQuestion = donnees.length;
+	
+	const progress = ((numeroQuestion + 1)/ totalQuestion) * 100;
+	progressBar.style.width = `${progress}%`;
+    progressBar.setAttribute('aria-valuenow', progress);
+	
+	
+	
+
+
+
 
 	let divAvancementQuestion = document.getElementById("avancementQuestion");
 	if (!divAvancementQuestion) {
@@ -253,11 +278,13 @@ function AffichageQuestion(numeroQuestion) {
 		divQuestion.appendChild(choixReponse);
 		divQuestion.appendChild(document.createElement("br"));
 	});
+	divProgress.style.display = "block";
 	//Bouton suivant
 	const btnSuivant = document.createElement("button");
 	btnSuivant.textContent = "Suivant";
 	btnSuivant.addEventListener("click", () => {
 		GererSuivant(numeroQuestion + 1);
+		
 	});
 	divQuestion.appendChild(btnSuivant);
 
@@ -273,6 +300,8 @@ function GererSuivant(prochaineQuestion) {
 	} else {
 		reponsesUtilisateur[reponsesUtilisateur.length] = null;
 	}
+
+
 	const questionnaire = document.getElementById("questionnaire");
 	questionnaire.innerHTML = "";
 	if (prochaineQuestion < donnees.length) {
@@ -351,7 +380,10 @@ function initialisation() {
 
 	document.getElementById("btnCommencer").addEventListener("click", gererBoutonCommencer);
 
+	// Passer à la question suivante
+
 	// TODO...
 }
+
 
 addEventListener('load', initialisation, false);
