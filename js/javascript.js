@@ -198,12 +198,13 @@ function GenererQuiz() {
 
 	const formulaireDepart = document.getElementById("formulaireDepart");
 	formulaireDepart.remove();
-
+	const imgDepart = document.getElementById("imgDepart");
+	imgDepart.remove();
 	SalutationsHeader();
 	
 	AffichageQuestion(0);
 
-	CreationFooter();
+	
 
 }
 function SalutationsHeader() {
@@ -297,15 +298,7 @@ function GererSuivant(prochaineQuestion) {
 	}
 
 }
-function CreationFooter() {
 
-	const footerFormulaire = document.getElementById("footer");
-	const messageEtudiant = document.createElement("p");
-	messageEtudiant.textContent = "Site Web développé par Philippe Fortin et Pierre-Alexandre Ruel";
-	footerFormulaire.appendChild(messageEtudiant);
-	document.body.appendChild(footerFormulaire);
-	footerFormulaire.classList.add("container");
-}
 
 // Attention de conserver les informations du formulaire (avant de supprimer celui-ci) dans des variables javascripts car vous en aurez besoin
 function AfficherResultat() {
