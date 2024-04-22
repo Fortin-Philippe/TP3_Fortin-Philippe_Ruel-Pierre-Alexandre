@@ -245,7 +245,6 @@ function AffichageQuestion(numeroQuestion) {
 		divAvancementQuestion.textContent = `Question ${numeroQuestion + 1}/${totalQuestion}`;
 		divAvancementQuestion.classList.add("container");
 		document.body.appendChild(divAvancementQuestion);
-
 	}
 	else {
 		divAvancementQuestion.textContent = `Question ${numeroQuestion + 1}/${totalQuestion}`;
@@ -328,7 +327,8 @@ function CreationFooter() {
 function AfficherResultat() {
 	const questionnaire = document.getElementById("questionnaire");
 	questionnaire.innerHTML = "";
-	
+	const divAvancementQuestion = document.getElementById("avancementQuestion");
+	divAvancementQuestion.innerHTML= "";
 	const nombreDeBonneReponses = ObtenirNombreDeBonneReponse();
 	const pourcentageResultat = (nombreDeBonneReponses / donnees.length) * 100;
 	const pourcentageFormate = pourcentageResultat.toFixed(2);
