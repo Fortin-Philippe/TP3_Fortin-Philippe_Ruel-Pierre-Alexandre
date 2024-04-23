@@ -218,7 +218,8 @@ let totalQuestion = donnees.length;
 let progressBar = document.querySelector('.progress-bar');
 
 function AffichageQuestion(numeroQuestion) {
-	
+
+	const main = document.getElementById("main");
 	const progress = ((numeroQuestion + 1)/ totalQuestion) * 100;
 	progressBar.style.width = `${progress}%`;
     progressBar.setAttribute('aria-valuenow', progress);
@@ -230,7 +231,8 @@ function AffichageQuestion(numeroQuestion) {
 		divAvancementQuestion.textContent = `Question ${numeroQuestion + 1}/${totalQuestion}`;
 		divAvancementQuestion.classList.add("container");
 
-		document.body.appendChild(divAvancementQuestion);
+
+		main.appendChild(divAvancementQuestion);
 	}
 	else {
 		divAvancementQuestion.textContent = `Question ${numeroQuestion + 1}/${totalQuestion}`;
@@ -239,6 +241,8 @@ function AffichageQuestion(numeroQuestion) {
 	let divQuestionnaire = document.createElement("div");
 	divQuestionnaire.id = "questionnaire";
 	document.body.appendChild(divQuestionnaire);
+
+	main.appendChild(divQuestionnaire);
 
 	const uneQuestion = donnees[numeroQuestion];
 	const divQuestion = document.createElement('div');
@@ -302,6 +306,7 @@ function GererSuivant(prochaineQuestion) {
 
 // Attention de conserver les informations du formulaire (avant de supprimer celui-ci) dans des variables javascripts car vous en aurez besoin
 function AfficherResultat() {
+	const main = document.getElementById("main");
 	const questionnaire = document.getElementById("questionnaire");
 	questionnaire.innerHTML = "";
 	const divAvancementQuestion = document.getElementById("avancementQuestion");
@@ -322,13 +327,13 @@ function AfficherResultat() {
 		let imageReussite = document.createElement("img");
 		imageReussite.src = "img/reussite.jpg";
 		imageReussite.alt = "Image de réussite.";
-		document.body.appendChild(imageReussite);
+		main.appendChild(imageReussite);
 	}
 	else {
 		let imageEchec = document.createElement("img");
 		imageEchec.src = "img/echec.jpg";
 		imageEchec.alt = "Image d'échec.";
-		document.body.appendChild(imageEchec);
+		main.appendChild(imageEchec);
 	}
 }
 function ObtenirNombreDeBonneReponse() {
