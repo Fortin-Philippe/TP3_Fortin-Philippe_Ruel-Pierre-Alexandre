@@ -6,7 +6,7 @@
 let donnees =
 	[
 		{
-			"question": "Durant la guerre des Clones, un seigneur sith tire les ficelles des deux cotés afin de corrompre le sénat galactique ainsi que l'alliance séparatiste. Quelle est sa véritable identité ?",
+			"question": "Durant la Guerre des Clones, un seigneur sith tire les ficelles des deux côtés afin de corrompre le sénat galactique ainsi que l'alliance séparatiste. Quelle est sa véritable identité ?",
 			"réponses": [
 				"Darth Jar-Jar",
 				"Count Dooku",
@@ -16,7 +16,7 @@ let donnees =
 			"réponse": 2
 		},
 		{
-			"question": "À la fin de la guerre des clones, le chancelier Palpatine ordonne à tous les soldats clones de la grande armée de la république d'anéantire les jedis. Quel est le code de cet ordre ?",
+			"question": "À la fin de la Guerre des clones, le chancelier Palpatine ordonne à tous les soldats clones de la république d'anéantire les jedis. Quel est le code de cet ordre ?",
 			"réponses": [
 				"66",
 				"501",
@@ -26,27 +26,27 @@ let donnees =
 			"réponse": 0
 		},
 		{
-			"question": "Durant la guerre des Clones, Ahsoka est accusé par le Sénat et est banni de l'ordre Jedi pour un crime qu'elle n'a pas commis. Qui est le traitre ?",
+			"question": "Durant la Guerre des Clones, Ahsoka est accusée par le Sénat et est bannie de l'Ordre Jedi pour un crime qu'elle n'a pas commis. Qui est le traitre ?",
 			"réponses": [
 				"Assaj Ventress",
-				"Bariss Offee",
+				"Barriss Offee",
 				"Pong Krell",
 				"Savage Opress"
 			],
 			"réponse": 1
 		},
 		{
-			"question": "Avant les événements de la guerre des clone Obi-Wan Kenobi etais le padawan du jedi ?",
+			"question": "Avant les événements de la Guerre des clones, Obi-Wan Kenobi était le padawan de quel maître jedi ?",
 			"réponses": [
 				"Anakin Skywalker",
-				" Yoda",
+				"Yoda",
 				"Mace Windu",
-				" Qui-Gon Jinn"
+				"Qui-Gon Jinn"
 			],
 			"réponse": 3
 		},
 		{
-			"question": "Mace Windu a une couleur particuliere pour son sabre, qu'elle est cette couleur ?",
+			"question": "La couleur du sabre laser de  Mace Windu à une couleur particulière pour son sabre, qu'elle est cette couleur ?",
 			"réponses": [
 				"Rose",
 				"Mauve",
@@ -56,7 +56,7 @@ let donnees =
 			"réponse": 1
 		},
 		{
-			"question": "Quelle est le nom du droid de navigation de Anakin Skywalker ?",
+			"question": "Quelle est le nom du droide de navigation d'Anakin Skywalker ?",
 			"réponses": [
 				"R2-D2",
 				"BB-8",
