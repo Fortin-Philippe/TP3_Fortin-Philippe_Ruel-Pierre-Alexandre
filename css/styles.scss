@@ -4,21 +4,55 @@ body
     padding:0px;
     margin: 0px;
     font-family:verdana, sans-serif;
-    background-color: grey;
+    background-color: #282b28;
+    color: white;
 }
-
+.margin-top-30{
+    margin-top: 30px;
+}
 .container
 {
     margin: 0 auto;
     max-width: 1200px;
     width: 90%;
 }
-.header{
-    color: aqua;
+.padding-5{
+    padding: 5px;
 }
 header{
-    background-color: blue;
+    div{
+    background-color: #F06543;
+    padding: 20px;
+    color: white;
+ 
+    }
+    #divSalutations{
+        background-color: #3e5641;
+        color: black;
+        padding: 20px;
+
+        p{
+            margin-bottom: 0;
+        }
+    }
+
+}
+main{
+    #div-question{
+        padding-bottom: 20px;
+    }
+    label{
+        display: inline;
+    }
+    button{
+        margin-top: 10px;
+    }
 }
 footer{
-    background-color: red;
+    div{
+    margin: 0;
+    background-color: #d36135;
+    padding: 20px;
+    color: white;
+    }
 }

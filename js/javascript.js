@@ -209,9 +209,10 @@ function GenererQuiz() {
 
 }
 function SalutationsHeader() {
-
 	let divSalutations = document.getElementById("divSalutations");
-	divSalutations.textContent = `Bonjour ${prenomUtilisateur} ${nomUtilisateur} !`;
+	let pSalutations = document.createElement("p");
+	pSalutations.textContent= `Bonjour ${prenomUtilisateur} ${nomUtilisateur} !`;
+	divSalutations.appendChild(pSalutations);
 }
 
 
@@ -247,6 +248,7 @@ function AffichageQuestion(numeroQuestion) {
 
 	const uneQuestion = donnees[numeroQuestion];
 	const divQuestion = document.createElement('div');
+	divQuestion.id="div-question";
 	
 	divQuestion.classList.add('question');
 	//Texte de la question
@@ -329,12 +331,14 @@ function AfficherResultat() {
 		imageReussite.src = "img/reussite.jpg";
 		imageReussite.alt = "Image de réussite.";
 		main.appendChild(imageReussite);
+		imageReussite.classList.add("img-fluid");
 	}
 	else {
 		let imageEchec = document.createElement("img");
 		imageEchec.src = "img/echec.jpg";
 		imageEchec.alt = "Image d'échec.";
 		main.appendChild(imageEchec);
+
 	}
 }
 function ObtenirNombreDeBonneReponse() {

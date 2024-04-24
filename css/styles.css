@@ -2,7 +2,12 @@ body {
   padding: 0px;
   margin: 0px;
   font-family: verdana, sans-serif;
-  background-color: grey;
+  background-color: #282b28;
+  color: white;
+}
+
+.margin-top-30 {
+  margin-top: 30px;
 }
 
 .container {
@@ -11,14 +16,37 @@ body {
   width: 90%;
 }
 
-.header {
-  color: aqua;
+.padding-5 {
+  padding: 5px;
 }
 
-header {
-  background-color: blue;
+header div {
+  background-color: #F06543;
+  padding: 20px;
+  color: white;
+}
+header #divSalutations {
+  background-color: #3e5641;
+  color: black;
+  padding: 20px;
+}
+header #divSalutations p {
+  margin-bottom: 0;
 }
 
-footer {
-  background-color: red;
+main #div-question {
+  padding-bottom: 20px;
+}
+main label {
+  display: inline;
+}
+main button {
+  margin-top: 10px;
+}
+
+footer div {
+  margin: 0;
+  background-color: #d36135;
+  padding: 20px;
+  color: white;
 }/*# sourceMappingURL=styles.css.map */
