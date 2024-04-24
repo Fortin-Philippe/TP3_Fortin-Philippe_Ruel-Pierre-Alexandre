@@ -23,7 +23,7 @@ body {
 header div {
   background-color: #F06543;
   padding: 20px;
-  color: white;
+  color: black;
 }
 header #divSalutations {
   background-color: #3e5641;
@@ -32,6 +32,8 @@ header #divSalutations {
 }
 header #divSalutations p {
   margin-bottom: 0;
+  color: white;
+ margin: 0px 31px;
 }
 
 main #div-question {
@@ -48,5 +50,5 @@ footer div {
   margin: 0;
   background-color: #d36135;
   padding: 20px;
-  color: white;
+  color: black;
 }/*# sourceMappingURL=styles.css.map */

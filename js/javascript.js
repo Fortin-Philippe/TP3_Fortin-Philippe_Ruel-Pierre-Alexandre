@@ -147,14 +147,17 @@ function gererBoutonCommencer() {
 	// Validation du mdp
 	if (motDePasse != "") {
 		if (motDePasse.length >= 8) {
-			document.getElementById("msgErreurmdp").textContent = "";
-			MotDePasseValide = true;
+			// Vérifier si le mot de passe est alphanumérique et commence par une majuscule
+			if (/^[A-Z][a-zA-Z0-9]*$/.test(motDePasse)) {
+				document.getElementById("msgErreurmdp").textContent = "";
+				MotDePasseValide = true;
+			} else {
+				document.getElementById("msgErreurmdp").textContent = "Mot de passe invalide. Doit être alphanumérique et commencer par une majuscule.";
+			}
+		} else {
+			document.getElementById("msgErreurmdp").textContent = "Le mot de passe doit contenir au moins 8 caractères.";
 		}
-		else {
-			document.getElementById("msgErreurmdp").textContent = "Mot de passe invalide";
-		}
-	}
-	else {
+	} else {
 		document.getElementById("msgErreurmdp").textContent = "Veuillez remplir le champ.";
 	}
 
@@ -273,6 +276,7 @@ function AffichageQuestion(numeroQuestion) {
 	divProgress.style.display = "block";
 	//Bouton suivant
 	const btnSuivant = document.createElement("button");
+	btnSuivant.classList.add("btn", "btn-primary");
 	btnSuivant.textContent = "Suivant";
 	btnSuivant.addEventListener("click", () => {
 		GererSuivant(numeroQuestion + 1);
