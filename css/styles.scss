@@ -4,7 +4,7 @@ body
     padding:0px;
     margin: 0px;
     font-family:verdana, sans-serif;
-    background-color:white;
+    background-color: grey;
 }
 
 .container
@@ -15,4 +15,10 @@ body
 }
 .header{
     color: aqua;
+}
+header{
+    background-color: blue;
+}
+footer{
+    background-color: red;
 }

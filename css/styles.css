@@ -2,11 +2,23 @@ body {
   padding: 0px;
   margin: 0px;
   font-family: verdana, sans-serif;
-  background-color: white;
+  background-color: grey;
 }
 
 .container {
   margin: 0 auto;
   max-width: 1200px;
   width: 90%;
+}
+
+.header {
+  color: aqua;
+}
+
+header {
+  background-color: blue;
+}
+
+footer {
+  background-color: red;
 }/*# sourceMappingURL=styles.css.map */
