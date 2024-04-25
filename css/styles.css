@@ -10,25 +10,30 @@ body {
   margin-top: 30px;
 }
 
+.padding-0 {
+  padding: 0;
+}
+
 .container {
   margin: 0 auto;
   max-width: 1200px;
   width: 90%;
+  padding: 0;
 }
 
-.padding-5 {
-  padding: 5px;
+.padding-top-5 {
+  padding-bottom: 5px;
 }
 
 header div {
   background-color: #F06543;
-  padding: 20px;
+  padding: 20px 0px 20px 0px;
   color: white;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 header #divSalutations {
   background-color: #3e5641;
-  padding: 20px;
+  padding: 20px 0px 20px 0px;
 }
 header #divSalutations p {
   margin-bottom: 0;
@@ -45,12 +50,12 @@ main button {
   margin-top: 10px;
 }
 main #divImage {
-  margin-bottom: 25px;
+  margin-bottom: 2px;
 }
 
 footer div {
   margin: 0;
   background-color: #d36135;
-  padding: 20px;
+  padding: 20px 0px 20px 0px;
   color: white;
 }/*# sourceMappingURL=styles.css.map */

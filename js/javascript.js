@@ -226,6 +226,7 @@ let progressBar = document.querySelector('.progress-bar');
 function AffichageQuestion(numeroQuestion) {
 
 	const main = document.getElementById("main");
+
 	const progress = ((numeroQuestion + 1) / totalQuestion) * 100;
 	progressBar.style.width = `${progress}%`;
 	progressBar.setAttribute('aria-valuenow', progress);
@@ -252,9 +253,9 @@ function AffichageQuestion(numeroQuestion) {
 
 	const uneQuestion = donnees[numeroQuestion];
 	const divQuestion = document.createElement('div');
+	divQuestion.classList.add("container");
 	divQuestion.id = "div-question";
 
-	divQuestion.classList.add('question');
 	//Texte de la question
 	const textQuestion = document.createElement("p");
 	textQuestion.textContent = uneQuestion.question;
@@ -287,7 +288,6 @@ function AffichageQuestion(numeroQuestion) {
 
 	divQuestionnaire = document.getElementById("questionnaire");
 	divQuestionnaire.appendChild(divQuestion);
-	divQuestionnaire.classList.add("container");
 
 }
 
@@ -316,10 +316,9 @@ function GererSuivant(prochaineQuestion) {
 function AfficherResultat() {
 	const divBarreProgression = document.getElementById("progressbarID");
 	divBarreProgression.innerHTML= "";
-
+	const divPositionnement = document.getElementById("divPositionnement");
+	divPositionnement.innerHTML="";
 	
-	const questionnaire = document.getElementById("questionnaire");
-	questionnaire.innerHTML = "";
 
 	const divAvancementQuestion = document.getElementById("avancementQuestion");
 	divAvancementQuestion.innerHTML = "";
@@ -327,14 +326,12 @@ function AfficherResultat() {
 	const pourcentageResultat = (nombreDeBonneReponses / donnees.length) * 100;
 	const pourcentageFormate = pourcentageResultat.toFixed(2);
 
-	let divPositionTexte = document.createElement("div");
-	divPositionTexte.id = "divPositionTexte";
+	let divPositionTexte = document.getElementById("divPositionnement");
 	divPositionTexte.classList.add("row");
 
 	let divTextResultat = document.createElement("div");
 	divTextResultat.id = "divResultat";
-	divTextResultat.classList.add("col-6");
-	
+	divTextResultat.classList.add("col-md-6", "col-sm-12","padding-0");
 	const textResultatNom = document.createElement("p");
 	textResultatNom.textContent = `Résultat pour ${prenomUtilisateur} ${nomUtilisateur} :`;
 
@@ -346,11 +343,9 @@ function AfficherResultat() {
 	divTextResultat.appendChild(textResultatNom);
 	divTextResultat.appendChild(textPourcentage);
 
-	questionnaire.appendChild(divPositionTexte);
-
 	let divImage = document.createElement("div");
 	divImage.id = "divImage";
-	divImage.classList.add("col-6");
+	divImage.classList.add("col-md-6", "col-sm-12");
 	divPositionTexte.appendChild(divImage);
 	if (pourcentageFormate >= 60) {
 
