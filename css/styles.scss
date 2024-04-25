@@ -24,17 +24,16 @@ header{
     background-color: #F06543;
     padding: 20px;
     color: white;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
  
     }
     #divSalutations{
         background-color: #3e5641;
-        color: black;
         padding: 20px;
 
         p{
             margin-bottom: 0;
             color: white;
-            margin-left: 20px;
         }
     }
 
@@ -48,6 +47,9 @@ main{
     }
     button{
         margin-top: 10px;
+    }
+    #divImage{
+        margin-bottom: 25px;
     }
 }
 footer{

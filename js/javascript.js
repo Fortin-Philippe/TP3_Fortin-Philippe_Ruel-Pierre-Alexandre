@@ -65,7 +65,7 @@ let donnees =
 			],
 			"réponse": 0
 		}
-		
+
 	];
 
 /* Exemple d'utilisation
@@ -205,16 +205,17 @@ function GenererQuiz() {
 	const imgDepart = document.getElementById("imgDepart");
 	imgDepart.remove();
 	SalutationsHeader();
-	
+
 	AffichageQuestion(0);
 
-	
+
 
 }
 function SalutationsHeader() {
 	let divSalutations = document.getElementById("divSalutations");
 	let pSalutations = document.createElement("p");
-	pSalutations.textContent= `Bonjour ${prenomUtilisateur} ${nomUtilisateur} !`;
+	pSalutations.textContent = `Bonjour ${prenomUtilisateur} ${nomUtilisateur} !`;
+	pSalutations.classList.add("container");
 	divSalutations.appendChild(pSalutations);
 }
 
@@ -225,9 +226,9 @@ let progressBar = document.querySelector('.progress-bar');
 function AffichageQuestion(numeroQuestion) {
 
 	const main = document.getElementById("main");
-	const progress = ((numeroQuestion + 1)/ totalQuestion) * 100;
+	const progress = ((numeroQuestion + 1) / totalQuestion) * 100;
 	progressBar.style.width = `${progress}%`;
-    progressBar.setAttribute('aria-valuenow', progress);
+	progressBar.setAttribute('aria-valuenow', progress);
 
 	let divAvancementQuestion = document.getElementById("avancementQuestion");
 	if (!divAvancementQuestion) {
@@ -251,8 +252,8 @@ function AffichageQuestion(numeroQuestion) {
 
 	const uneQuestion = donnees[numeroQuestion];
 	const divQuestion = document.createElement('div');
-	divQuestion.id="div-question";
-	
+	divQuestion.id = "div-question";
+
 	divQuestion.classList.add('question');
 	//Texte de la question
 	const textQuestion = document.createElement("p");
@@ -280,14 +281,14 @@ function AffichageQuestion(numeroQuestion) {
 	btnSuivant.textContent = "Suivant";
 	btnSuivant.addEventListener("click", () => {
 		GererSuivant(numeroQuestion + 1);
-		
+
 	});
 	divQuestion.appendChild(btnSuivant);
 
 	divQuestionnaire = document.getElementById("questionnaire");
 	divQuestionnaire.appendChild(divQuestion);
 	divQuestionnaire.classList.add("container");
-	
+
 }
 
 function GererSuivant(prochaineQuestion) {
@@ -313,36 +314,58 @@ function GererSuivant(prochaineQuestion) {
 
 // Attention de conserver les informations du formulaire (avant de supprimer celui-ci) dans des variables javascripts car vous en aurez besoin
 function AfficherResultat() {
-	const main = document.getElementById("main");
+	const divBarreProgression = document.getElementById("progressbarID");
+	divBarreProgression.innerHTML= "";
+
+	
 	const questionnaire = document.getElementById("questionnaire");
 	questionnaire.innerHTML = "";
+
 	const divAvancementQuestion = document.getElementById("avancementQuestion");
-	divAvancementQuestion.innerHTML= "";
+	divAvancementQuestion.innerHTML = "";
 	const nombreDeBonneReponses = ObtenirNombreDeBonneReponse();
 	const pourcentageResultat = (nombreDeBonneReponses / donnees.length) * 100;
 	const pourcentageFormate = pourcentageResultat.toFixed(2);
 
+	let divPositionTexte = document.createElement("div");
+	divPositionTexte.id = "divPositionTexte";
+	divPositionTexte.classList.add("row");
+
+	let divTextResultat = document.createElement("div");
+	divTextResultat.id = "divResultat";
+	divTextResultat.classList.add("col-6");
+	
 	const textResultatNom = document.createElement("p");
-	textResultatNom.textContent = `Résultat pour ${prenomUtilisateur} ${nomUtilisateur}`;
-	questionnaire.appendChild(textResultatNom);
+	textResultatNom.textContent = `Résultat pour ${prenomUtilisateur} ${nomUtilisateur} :`;
 
 	const textPourcentage = document.createElement("p");
 	textPourcentage.textContent = `${pourcentageFormate}%`;
-	questionnaire.appendChild(textPourcentage);
 
+
+	divPositionTexte.appendChild(divTextResultat);
+	divTextResultat.appendChild(textResultatNom);
+	divTextResultat.appendChild(textPourcentage);
+
+	questionnaire.appendChild(divPositionTexte);
+
+	let divImage = document.createElement("div");
+	divImage.id = "divImage";
+	divImage.classList.add("col-6");
+	divPositionTexte.appendChild(divImage);
 	if (pourcentageFormate >= 60) {
+
 		let imageReussite = document.createElement("img");
 		imageReussite.src = "img/reussite.jpg";
 		imageReussite.alt = "Image de réussite.";
-		main.appendChild(imageReussite);
+		divImage.appendChild(imageReussite);
 		imageReussite.classList.add("img-fluid");
 	}
 	else {
 		let imageEchec = document.createElement("img");
 		imageEchec.src = "img/echec.jpg";
 		imageEchec.alt = "Image d'échec.";
-		main.appendChild(imageEchec);
-
+		divImage.appendChild(imageEchec);
+		imageEchec.classList.add("img-fluid");
 	}
 }
 function ObtenirNombreDeBonneReponse() {
@@ -362,7 +385,7 @@ function ObtenirNombreDeBonneReponse() {
 
 
 /* ### FIN - SECTION FONCTIONS */
-function refreshInfo(){
+function refreshInfo() {
 	location.reload(true);
 }
 
