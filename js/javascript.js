@@ -26,7 +26,7 @@ let donnees =
 			"réponse": 0
 		},
 		{
-			"question": "Durant la Guerre des Clones, Ahsoka est accusée par le Sénat et est bannie de l'Ordre Jedi pour un crime qu'elle n'a pas commis. Qui est le traitre ?",
+			"question": "Durant la Guerre des Clones, Ahsoka est accusée par le Sénat et est bannie de l'Ordre Jedi pour un crime qu'elle n'a pas commis. Qui est le véritable responsable ?",
 			"réponses": [
 				"Assaj Ventress",
 				"Barriss Offee",
@@ -46,7 +46,7 @@ let donnees =
 			"réponse": 3
 		},
 		{
-			"question": "La couleur du sabre laser de  Mace Windu à une couleur particulière pour son sabre, qu'elle est cette couleur ?",
+			"question": "Le sabre laser de  Mace Windu à une couleur particulière. Quelle est cette couleur ?",
 			"réponses": [
 				"Rose",
 				"Mauve",
