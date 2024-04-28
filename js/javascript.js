@@ -68,30 +68,6 @@ let donnees =
 
 	];
 
-/* Exemple d'utilisation
-// Question1
-donnees[0].question;       ->"À quoi sert un aria-label?"
-donnees[0].responses[2];   ->"Je ne sais pas"
-
-// Question 2
-donnees[1].réponse;        -> 1
-
-...
-*/
-/* ### FIN - VOS DONNÉES DE DÉPART (QUESTIONS/RÉPONSES) */
-
-
-/* ### DÉBUT - SECTION VARIABLES GLOBALES */
-// Vos variables globales
-
-/* ### FIN - SECTION VARIABLES GLOBALES */
-
-
-
-/* ### DÉBUT - SECTION FONCTIONS */
-// Vos fonctions
-// ..
-// ..
 let prenomUtilisateur;
 let nomUtilisateur;
 let reponsesUtilisateur = [];
@@ -184,20 +160,14 @@ function gererBoutonCommencer() {
 		formulaireEstValide = true;
 	}
 
-
+// Si le formulaire est valide, le nom et prénom est enregistré et le quiz se génère.
 	if (formulaireEstValide) {
 		prenomUtilisateur = prenom;
 		nomUtilisateur = nom;
 		GenererQuiz();
 	}
 }
-
-// 2) Rendu ici, on devrait savoir si tous les champs sont valides ou si au moins 1 champ est invalide.
-
-// Si le formulaire est valide, on peut maintenant supprimer en javascript la balise form (incluant tout son contenu)
-// et commencer à créer en javascript la première question, ses choix de réponses, ainsi que le bouton "Soumettre", qui sera utiliser avancer dans le quiz
-// d'une question à l'autre
-
+//Fonction qui génère le quiz et qui retire le formulaire de départ et l'image de départ.
 function GenererQuiz() {
 
 	const formulaireDepart = document.getElementById("formulaireDepart");
@@ -208,9 +178,9 @@ function GenererQuiz() {
 
 	AffichageQuestion(0);
 
-
-
 }
+
+//Fonction qui fait référence à une divSalutations dans le html dans laquelle il y a p qui salut l'utilisateur avec son nom et prénom.
 function SalutationsHeader() {
 	let divSalutations = document.getElementById("divSalutations");
 	let pSalutations = document.createElement("p");
@@ -220,18 +190,23 @@ function SalutationsHeader() {
 }
 
 
-let totalQuestion = donnees.length;
+
 let progressBar = document.querySelector('.progress-bar');
 
+//Fonction qui affiche la question en cours et qui prend le nombre de question en paramètre.
 function AffichageQuestion(numeroQuestion) {
-
+	//Variable qui stocke le nombre total de questions.
+	let totalQuestion = donnees.length;
+	//Variable qui réfère à la section main en html.
 	const main = document.getElementById("main");
 
 	const progress = ((numeroQuestion + 1) / totalQuestion) * 100;
 	progressBar.style.width = `${progress}%`;
 	progressBar.setAttribute('aria-valuenow', progress);
-
+	
+	//Variable divAvancementQuestion qui fait référence à une div existante.
 	let divAvancementQuestion = document.getElementById("avancementQuestion");
+	//Si cette div n'existe pas, alors on en crée une nouvelle.
 	if (!divAvancementQuestion) {
 		divAvancementQuestion = document.createElement("div");
 		divAvancementQuestion.id = "avancementQuestion";
@@ -241,6 +216,7 @@ function AffichageQuestion(numeroQuestion) {
 
 		main.appendChild(divAvancementQuestion);
 	}
+	//Sinon, on ajoute 1 à la div existante. 
 	else {
 		divAvancementQuestion.textContent = `Question ${numeroQuestion + 1}/${totalQuestion}`;
 	}
@@ -248,19 +224,22 @@ function AffichageQuestion(numeroQuestion) {
 	let divQuestionnaire = document.createElement("div");
 	divQuestionnaire.id = "questionnaire";
 	document.body.appendChild(divQuestionnaire);
-
 	main.appendChild(divQuestionnaire);
 
+	//Création d'une variable question qui va chercher la question dans donnees à la position donnée.
 	const uneQuestion = donnees[numeroQuestion];
+	//Création d'une divQuestion pour y afficher la question.
 	const divQuestion = document.createElement('div');
 	divQuestion.classList.add("container");
 	divQuestion.id = "div-question";
 
-	//Texte de la question
+	//Création d'un paragraphe pour y affecter le texte de la question.
 	const textQuestion = document.createElement("p");
+	//Affecter la question actuelle à une zone de texte.
 	textQuestion.textContent = uneQuestion.question;
 	divQuestion.appendChild(textQuestion);
 
+	//Fonction qui créer les choix de réponses en radioButton en fonction de l'index donné.
 	uneQuestion.réponses.forEach((option, index) => {
 		const choixReponse = document.createElement("label");
 		const radioButton = document.createElement("input");
@@ -268,18 +247,21 @@ function AffichageQuestion(numeroQuestion) {
 		radioButton.name = `question-${numeroQuestion}`;
 		radioButton.value = index;
 		choixReponse.appendChild(radioButton);
-
+		//Sélection du texte de la question.
 		const txtQuestion = document.createTextNode(option);
 		choixReponse.appendChild(txtQuestion);
 
 		divQuestion.appendChild(choixReponse);
 		divQuestion.appendChild(document.createElement("br"));
 	});
+
 	divProgress.style.display = "block";
-	//Bouton suivant
+
+	//Bouton suivant qui créer un évènement click dans lequel il appel la fonction gerer suivant.
 	const btnSuivant = document.createElement("button");
 	btnSuivant.classList.add("btn", "btn-primary");
 	btnSuivant.textContent = "Suivant";
+	btnSuivant.id ="btnSuivant";
 	btnSuivant.addEventListener("click", () => {
 		GererSuivant(numeroQuestion + 1);
 
@@ -291,20 +273,26 @@ function AffichageQuestion(numeroQuestion) {
 
 }
 
+//Fonction qui gère le nombre suivant en enregistrant la réponse et qui prend en paramètre la prochaine question.
 function GererSuivant(prochaineQuestion) {
 
 	const choixUtilisateur = document.querySelector(`input[name="question-${prochaineQuestion - 1}"]:checked`);
+// Si le choix de l'utilisateur est existant, alors on enregistre la valeur choisie.
 	if (choixUtilisateur) {
 		reponsesUtilisateur[reponsesUtilisateur.length] = parseInt(choixUtilisateur.value);
-	} else {
+	} 
+	//Sinon on lui affecte la valeur nulle.
+	else {
 		reponsesUtilisateur[reponsesUtilisateur.length] = null;
 	}
-
+	//On efface le contenu du questionnaire.
 	const questionnaire = document.getElementById("questionnaire");
 	questionnaire.innerHTML = "";
+	//Si on arrive n'arrive pas à la dernière question, on affiche la prochaine question. 
 	if (prochaineQuestion < donnees.length) {
 		AffichageQuestion(prochaineQuestion);
 	}
+	//Sinon on affiche le résultat.
 	else {
 		AfficherResultat();
 	}
@@ -312,41 +300,54 @@ function GererSuivant(prochaineQuestion) {
 }
 
 
-// Attention de conserver les informations du formulaire (avant de supprimer celui-ci) dans des variables javascripts car vous en aurez besoin
+// Fonction qui affiche le résultat des réponses du questionnaire. 
 function AfficherResultat() {
+	//On efface la barre de progression.
 	const divBarreProgression = document.getElementById("progressbarID");
 	divBarreProgression.innerHTML= "";
+	//On efface la configuration du questionnaire.
 	const divPositionnement = document.getElementById("divPositionnement");
 	divPositionnement.innerHTML="";
-	
-
+	//On efface le nombre de question.
 	const divAvancementQuestion = document.getElementById("avancementQuestion");
 	divAvancementQuestion.innerHTML = "";
+
+	//On affecte le nombre de bonne bonne réponse à la variavle nombreDeBonneReponses.
 	const nombreDeBonneReponses = ObtenirNombreDeBonneReponse();
+	//On calcule le pourcentage de bonne réponse en pourcentage.
 	const pourcentageResultat = (nombreDeBonneReponses / donnees.length) * 100;
+	//On limite le nombre de chiffre après la virgule à 2.
 	const pourcentageFormate = pourcentageResultat.toFixed(2);
 
+	//On crée une div pour positionner avec bootstrap.
 	let divPositionTexte = document.getElementById("divPositionnement");
+	divPositionTexte.id="divPositionTexte";
 	divPositionTexte.classList.add("row");
 
 	let divTextResultat = document.createElement("div");
-	divTextResultat.id = "divResultat";
+	divTextResultat.id = "divTextResultat";
 	divTextResultat.classList.add("col-md-6", "col-sm-12","padding-0");
+
+	//Création d'un paragraphe pour annoncer le résultat avec le nom et prénom du répondant.
 	const textResultatNom = document.createElement("p");
+	textResultatNom.id="textResultatom";
 	textResultatNom.textContent = `Résultat pour ${prenomUtilisateur} ${nomUtilisateur} :`;
 
+	//Création d'un paragraphe pour afficher le résultat en pourcentage.
 	const textPourcentage = document.createElement("p");
 	textPourcentage.textContent = `${pourcentageFormate}%`;
-
 
 	divPositionTexte.appendChild(divTextResultat);
 	divTextResultat.appendChild(textResultatNom);
 	divTextResultat.appendChild(textPourcentage);
 
+	//Création d'une divImage pour y insérer l'image
 	let divImage = document.createElement("div");
 	divImage.id = "divImage";
 	divImage.classList.add("col-md-6", "col-sm-12");
 	divPositionTexte.appendChild(divImage);
+
+	//Si le résultat en pourcentage est supérieur ou égal à 60 alors on affiche une image de réussite.
 	if (pourcentageFormate >= 60) {
 
 		let imageReussite = document.createElement("img");
@@ -355,6 +356,7 @@ function AfficherResultat() {
 		divImage.appendChild(imageReussite);
 		imageReussite.classList.add("img-fluid");
 	}
+	//Sinon, on affiche une image d'échec.
 	else {
 		let imageEchec = document.createElement("img");
 		imageEchec.src = "img/echec.jpg";
@@ -363,19 +365,23 @@ function AfficherResultat() {
 		imageEchec.classList.add("img-fluid");
 	}
 }
+
+//Fonction qui enregistre le nombre de bonne réponse. 
 function ObtenirNombreDeBonneReponse() {
 	let nombreDeBonneReponses = 0;
+	//Boucle for qui vérifie si la réponse est bonne et qu'elle n'est pas égale à null. 
 	for (let i = 0; i < donnees.length; i++) {
 		const bonneReponse = donnees[i].réponse;
 		const reponseUtilisateur = reponsesUtilisateur[i];
-		if (reponseUtilisateur == bonneReponse && reponseUtilisateur != undefined) {
+		if (reponseUtilisateur == bonneReponse && reponseUtilisateur != null) {
 			nombreDeBonneReponses++;
 		}
 	}
+	//Elle retourne le nombre de bonne réponse.
 	return nombreDeBonneReponses;
 
 }
-// tout au long du quiz (ex. le prénom et le nom)
+
 
 
 
