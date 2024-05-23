@@ -160,7 +160,7 @@ function gererBoutonCommencer() {
 		formulaireEstValide = true;
 	}
 
-// Si le formulaire est valide, le nom et prénom est enregistré et le quiz se génère.
+	// Si le formulaire est valide, le nom et prénom est enregistré et le quiz se génère.
 	if (formulaireEstValide) {
 		prenomUtilisateur = prenom;
 		nomUtilisateur = nom;
@@ -203,7 +203,7 @@ function AffichageQuestion(numeroQuestion) {
 	const progress = ((numeroQuestion + 1) / totalQuestion) * 100;
 	progressBar.style.width = `${progress}%`;
 	progressBar.setAttribute('aria-valuenow', progress);
-	
+
 	//Variable divAvancementQuestion qui fait référence à une div existante.
 	let divAvancementQuestion = document.getElementById("avancementQuestion");
 	//Si cette div n'existe pas, alors on en crée une nouvelle.
@@ -261,7 +261,7 @@ function AffichageQuestion(numeroQuestion) {
 	const btnSuivant = document.createElement("button");
 	btnSuivant.classList.add("btn", "btn-primary");
 	btnSuivant.textContent = "Suivant";
-	btnSuivant.id ="btnSuivant";
+	btnSuivant.id = "btnSuivant";
 	btnSuivant.addEventListener("click", () => {
 		GererSuivant(numeroQuestion + 1);
 
@@ -277,10 +277,10 @@ function AffichageQuestion(numeroQuestion) {
 function GererSuivant(prochaineQuestion) {
 
 	const choixUtilisateur = document.querySelector(`input[name="question-${prochaineQuestion - 1}"]:checked`);
-// Si le choix de l'utilisateur est existant, alors on enregistre la valeur choisie.
+	// Si le choix de l'utilisateur est existant, alors on enregistre la valeur choisie.
 	if (choixUtilisateur) {
 		reponsesUtilisateur[reponsesUtilisateur.length] = parseInt(choixUtilisateur.value);
-	} 
+	}
 	//Sinon on lui affecte la valeur nulle.
 	else {
 		reponsesUtilisateur[reponsesUtilisateur.length] = null;
@@ -304,16 +304,16 @@ function GererSuivant(prochaineQuestion) {
 function AfficherResultat() {
 	//On efface la barre de progression.
 	const divBarreProgression = document.getElementById("progressbarID");
-	divBarreProgression.innerHTML= "";
+	divBarreProgression.innerHTML = "";
 	//On efface la configuration du questionnaire.
 	const divPositionnement = document.getElementById("divPositionnement");
-	divPositionnement.innerHTML="";
+	divPositionnement.innerHTML = "";
 	//On efface le nombre de question.
 	const divAvancementQuestion = document.getElementById("avancementQuestion");
 	divAvancementQuestion.innerHTML = "";
 
 	//On affecte le nombre de bonne bonne réponse à la variavle nombreDeBonneReponses.
-	const nombreDeBonneReponses = ObtenirNombreDeBonneReponse();
+	let nombreDeBonneReponses = ObtenirNombreDeBonneReponse();
 	//On calcule le pourcentage de bonne réponse en pourcentage.
 	const pourcentageResultat = (nombreDeBonneReponses / donnees.length) * 100;
 	//On limite le nombre de chiffre après la virgule à 2.
@@ -321,16 +321,16 @@ function AfficherResultat() {
 
 	//On crée une div pour positionner avec bootstrap.
 	let divPositionTexte = document.getElementById("divPositionnement");
-	divPositionTexte.id="divPositionTexte";
+	divPositionTexte.id = "divPositionTexte";
 	divPositionTexte.classList.add("row");
 
 	let divTextResultat = document.createElement("div");
 	divTextResultat.id = "divTextResultat";
-	divTextResultat.classList.add("col-md-6", "col-sm-12","padding-0");
+	divTextResultat.classList.add("col-md-6", "col-sm-12", "padding-0");
 
 	//Création d'un paragraphe pour annoncer le résultat avec le nom et prénom du répondant.
 	const textResultatNom = document.createElement("p");
-	textResultatNom.id="textResultatom";
+	textResultatNom.id = "textResultatom";
 	textResultatNom.textContent = `Résultat pour ${prenomUtilisateur} ${nomUtilisateur} :`;
 
 	//Création d'un paragraphe pour afficher le résultat en pourcentage.
@@ -364,7 +364,21 @@ function AfficherResultat() {
 		divImage.appendChild(imageEchec);
 		imageEchec.classList.add("img-fluid");
 	}
+	let canva = document.getElementById("myChart");
+	let nombreDeMauvaiseReponse = donnees.length - nombreDeBonneReponses;
+	let chart = new Chart(canva, {
+		type: "doughnut",
+		data: {
+			labels: ["Bonne Réponse", "Mauvaise Réponse"],
+			datasets: [{
+				data: [nombreDeBonneReponses, nombreDeMauvaiseReponse],
+				backgroundColor: ["#d36135", "#3e5641"],
+			}]
+		}
+
+	});
 }
+
 
 //Fonction qui enregistre le nombre de bonne réponse. 
 function ObtenirNombreDeBonneReponse() {
