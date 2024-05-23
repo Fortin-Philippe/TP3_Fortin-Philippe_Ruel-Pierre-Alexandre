@@ -73,7 +73,6 @@ let nomUtilisateur;
 let reponsesUtilisateur = [];
 let divProgress = document.getElementById("progressbarID");
 
-
 divProgress.style.display = "none";
 function gererBoutonCommencer() {
 	// Retirer cette alert une fois le bouton complété
@@ -364,7 +363,10 @@ function AfficherResultat() {
 		divImage.appendChild(imageEchec);
 		imageEchec.classList.add("img-fluid");
 	}
+	let divChart = document.getElementById("divChart");
+	divChart.style.display="block";
 	let canva = document.getElementById("myChart");
+	divChart.appendChild(canva);
 	let nombreDeMauvaiseReponse = donnees.length - nombreDeBonneReponses;
 	let chart = new Chart(canva, {
 		type: "doughnut",
