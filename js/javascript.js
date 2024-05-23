@@ -73,6 +73,7 @@ let nomUtilisateur;
 let reponsesUtilisateur = [];
 let divProgress = document.getElementById("progressbarID");
 
+
 divProgress.style.display = "none";
 function gererBoutonCommencer() {
 	// Retirer cette alert une fois le bouton complété
@@ -166,17 +167,25 @@ function gererBoutonCommencer() {
 		GenererQuiz();
 	}
 }
+
+
+// Fonction pour recommencer le quiz
+
 //Fonction qui génère le quiz et qui retire le formulaire de départ et l'image de départ.
 function GenererQuiz() {
+    const formulaireDepart = document.getElementById("formulaireDepart");
+    const imgDepart = document.getElementById("imgDepart");
 
-	const formulaireDepart = document.getElementById("formulaireDepart");
-	formulaireDepart.remove();
-	const imgDepart = document.getElementById("imgDepart");
-	imgDepart.remove();
-	SalutationsHeader();
+    if (formulaireDepart) {
+        formulaireDepart.remove();
+    }
 
-	AffichageQuestion(0);
-
+    if (imgDepart) {
+        imgDepart.remove();
+    }
+    
+    SalutationsHeader();
+    AffichageQuestion(0);
 }
 
 //Fonction qui fait référence à une divSalutations dans le html dans laquelle il y a p qui salut l'utilisateur avec son nom et prénom.
@@ -318,6 +327,8 @@ function AfficherResultat() {
 	//On limite le nombre de chiffre après la virgule à 2.
 	const pourcentageFormate = pourcentageResultat.toFixed(2);
 
+	
+
 	//On crée une div pour positionner avec bootstrap.
 	let divPositionTexte = document.getElementById("divPositionnement");
 	divPositionTexte.id = "divPositionTexte";
@@ -363,8 +374,15 @@ function AfficherResultat() {
 		divImage.appendChild(imageEchec);
 		imageEchec.classList.add("img-fluid");
 	}
+	// Ajouter le bouton "Recommencer"
+	const btnRecommencer = document.createElement("button");
+	btnRecommencer.classList.add("btn", "btn-primary");
+	btnRecommencer.textContent = "Recommencer";
+	btnRecommencer.addEventListener("click", recommencerQuiz);
+	divTextResultat.appendChild(btnRecommencer);
+
 	let divChart = document.getElementById("divChart");
-	divChart.style.display="block";
+	divChart.style.display = "block";
 	let canva = document.getElementById("myChart");
 	divChart.appendChild(canva);
 	let nombreDeMauvaiseReponse = donnees.length - nombreDeBonneReponses;
@@ -380,6 +398,57 @@ function AfficherResultat() {
 
 	});
 }
+// Fonction pour sauvegarder les résultats dans le localStorage
+
+
+// Fonction pour recommencer le quiz
+function recommencerQuiz() {
+    
+    reponsesUtilisateur = [];
+	
+    // Obtenir les références des éléments à vider
+    const quizContainer = document.getElementById("quiz-container");
+    const resultContainer = document.getElementById("result-container");
+    const divSalutations = document.getElementById("divSalutations");
+    const avancementQuestion = document.getElementById("avancementQuestion");
+    const divImage = document.getElementById("divImage");
+    const divTextResultat = document.getElementById("divTextResultat");
+    const divChart = document.getElementById("divChart");
+    const divProgress = document.getElementById("progressbarID");
+
+    // Vider le contenu textuel des éléments sans supprimer les enfants
+    if (quizContainer) {
+        quizContainer.textContent = "";
+    }
+    if (resultContainer) {
+        resultContainer.textContent = "";
+    }
+    if (divSalutations) {
+        divSalutations.textContent = "";
+    }
+    if (avancementQuestion) {
+        avancementQuestion.textContent = "";
+    }
+    if (divImage) {
+        divImage.textContent = "";
+    }
+    if (divTextResultat) {
+        divTextResultat.textContent = "";
+    }
+    if (divChart) {
+        divChart.textContent = "";
+    }
+
+    // Réinitialiser la barre de progression
+    if (divProgress) {
+        divProgress.style.width = "0%";
+        divProgress.style.display = "none"; // Masquer la barre de progression
+    }
+
+    // Générer à nouveau le quiz à partir de la première question
+    GenererQuiz();
+}
+
 
 
 //Fonction qui enregistre le nombre de bonne réponse. 
@@ -417,7 +486,8 @@ function initialisation() {
 
 	document.getElementById("btnCommencer").addEventListener("click", gererBoutonCommencer);
 	document.getElementById("btnIgnorer").addEventListener("click", refreshInfo);
-	// Passer à la question suivante
+
+
 
 	// TODO...
 }
