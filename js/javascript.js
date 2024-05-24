@@ -407,7 +407,7 @@ function AfficherResultat() {
 			labels:["Resultat précédent", "Résultat actuel"],
 			datasets:[{
 				label: "Pourcentage de réussite",
-				data:[ 35,40],
+				data:[35,40],
 				borderColor: "red",
 				fill: false
 			}]
@@ -434,16 +434,16 @@ function recommencerQuiz() {
     const avancementQuestion = document.getElementById("avancementQuestion");
     const divImage = document.getElementById("divImage");
     const divTextResultat = document.getElementById("divTextResultat");
-    const canvaLine = document.getElementById("myChartDoughnut");
+    const canvaLine = document.getElementById("myChartLine");
     const divProgress = document.getElementById("progressbarID");
 	const canvaDoughnut = document.getElementById("myChartDoughnut");
     // Vider le contenu textuel des éléments sans supprimer les enfants
     if (quizContainer) {
         quizContainer.textContent = "";
     }
-	if (canvaLine) {
-        canvaLine.textContent = "";
-    }
+	
+        canvaLine.style.display="none";
+    
     if (resultContainer) {
         resultContainer.textContent = "";
     }
@@ -459,9 +459,9 @@ function recommencerQuiz() {
     if (divTextResultat) {
         divTextResultat.textContent = "";
     }
-    if (canvaDoughnut) {
-        canvaDoughnut.innerHTML = "";
-    }
+    
+        canvaDoughnut.style.display="none";
+    
 
     // Réinitialiser la barre de progression
     if (divProgress) {
