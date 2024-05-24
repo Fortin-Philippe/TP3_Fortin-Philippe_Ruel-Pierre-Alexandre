@@ -172,6 +172,7 @@ function gererBoutonCommencer() {
 // Fonction pour recommencer le quiz
 
 //Fonction qui génère le quiz et qui retire le formulaire de départ et l'image de départ.
+//Fonction qui génère le quiz et qui retire le formulaire de départ et l'image de départ.
 function GenererQuiz() {
     const formulaireDepart = document.getElementById("formulaireDepart");
     const imgDepart = document.getElementById("imgDepart");
@@ -374,6 +375,13 @@ function AfficherResultat() {
 		divImage.appendChild(imageEchec);
 		imageEchec.classList.add("img-fluid");
 	}
+	// Ajouter le bouton "Recommencer"
+	const btnRecommencer = document.createElement("button");
+	btnRecommencer.classList.add("btn", "btn-primary");
+	btnRecommencer.textContent = "Recommencer";
+	btnRecommencer.addEventListener("click", recommencerQuiz);
+	divTextResultat.appendChild(btnRecommencer);
+
 	let divChartDoughnut = document.getElementById("divChartDoughnut");
 	divChartDoughnut.style.display="block";
 	divChartDoughnut.style.width="50%";
@@ -421,8 +429,52 @@ function AfficherResultat() {
 
 
 }
+function recommencerQuiz() {
+    
+    reponsesUtilisateur = [];
+	
+    // Obtenir les références des éléments à vider
+    const quizContainer = document.getElementById("quiz-container");
+    const resultContainer = document.getElementById("result-container");
+    const divSalutations = document.getElementById("divSalutations");
+    const avancementQuestion = document.getElementById("avancementQuestion");
+    const divImage = document.getElementById("divImage");
+    const divTextResultat = document.getElementById("divTextResultat");
+    const divChartDoughnut = document.getElementById("divChartDoughnut");
+    const divProgress = document.getElementById("progressbarID");
 
+    // Vider le contenu textuel des éléments sans supprimer les enfants
+    if (quizContainer) {
+        quizContainer.textContent = "";
+    }
+    if (resultContainer) {
+        resultContainer.textContent = "";
+    }
+    if (divSalutations) {
+        divSalutations.textContent = "";
+    }
+    if (avancementQuestion) {
+        avancementQuestion.textContent = "";
+    }
+	if (divImage) {
+        divImage.textContent = "";
+    }
+    if (divTextResultat) {
+        divTextResultat.textContent = "";
+    }
+    if (divChartDoughnut) {
+        divChartDoughnut.innerHTML = "";
+    }
 
+    // Réinitialiser la barre de progression
+    if (divProgress) {
+        divProgress.style.width = "0%";
+        divProgress.style.display = "none"; // Masquer la barre de progression
+    }
+
+    // Générer à nouveau le quiz à partir de la première question
+    GenererQuiz();
+}
 //Fonction qui enregistre le nombre de bonne réponse. 
 function ObtenirNombreDeBonneReponse() {
 	let nombreDeBonneReponses = 0;
