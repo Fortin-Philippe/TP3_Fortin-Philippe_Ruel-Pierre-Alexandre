@@ -374,10 +374,12 @@ function AfficherResultat() {
 		divImage.appendChild(imageEchec);
 		imageEchec.classList.add("img-fluid");
 	}
-	let divChart = document.getElementById("divChart");
-	divChart.style.display="block";
-	let canva = document.getElementById("myChart");
-	divChart.appendChild(canva);
+	let divChartDoughnut = document.getElementById("divChartDoughnut");
+	divChartDoughnut.style.display="block";
+	divChartDoughnut.style.width="50%";
+	divChartDoughnut.style.padding="20px";
+	let canvaDoughnut = document.getElementById("myChartDoughnut");
+	divChartDoughnut.appendChild(canvaDoughnut);
 	let nombreDeMauvaiseReponse = donnees.length - nombreDeBonneReponses;
 	let chartDoughnut = new Chart(canvaDoughnut, {
 		type: "doughnut",
@@ -389,6 +391,34 @@ function AfficherResultat() {
 			}]
 		}
 	});
+	let divChartLine= document.getElementById("divChartLine");
+	divChartLine.style.display="block";
+	divChartLine.style.width= "50%";
+	divChartLine.style.padding = "20px";
+	let canvaLine = document.getElementById("myChartLine");
+	divChartLine.appendChild(canvaLine);
+
+	let chartLine = new Chart(canvaLine, {
+		type: "line",
+		data:{
+			labels:["Resultat précédent", "Résultat actuel"],
+			datasets:[{
+				label: "Pourcentage de réussite",
+				data:[ 35,40],
+				borderColor: "red",
+				fill: false
+			}]
+		},
+		options: {
+		scales:{
+			y:{
+				beginAtZero: true,
+				max: 100
+			}
+		}
+	}
+	});
+
 
 }
 
