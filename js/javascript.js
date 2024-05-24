@@ -298,12 +298,13 @@ function GererSuivant(prochaineQuestion) {
 	const questionnaire = document.getElementById("questionnaire");
 	questionnaire.innerHTML = "";
 	//Si on arrive n'arrive pas à la dernière question, on affiche la prochaine question. 
-	if (prochaineQuestion < donnees.length) {
-		AffichageQuestion(prochaineQuestion);
+	if (prochaineQuestion === donnees.length) {
+		AfficherResultat();
 	}
 	//Sinon on affiche le résultat.
 	else {
-		AfficherResultat();
+		
+		AffichageQuestion(prochaineQuestion);
 	}
 
 }
@@ -382,6 +383,7 @@ function AfficherResultat() {
 	btnRecommencer.addEventListener("click", recommencerQuiz);
 	divTextResultat.appendChild(btnRecommencer);
 
+	//Affichage du doughnut
 	let divChartDoughnut = document.getElementById("divChartDoughnut");
 	divChartDoughnut.style.display = "block";
 	divChartDoughnut.style.width = "40%";
@@ -399,6 +401,7 @@ function AfficherResultat() {
 			}]
 		}
 	});
+	//Affichage du diagramme à ligne.
 	let divChartLine = document.getElementById("divChartLine");
 	divChartLine.style.display = "block";
 	divChartLine.style.width = "100%";
@@ -426,8 +429,6 @@ function AfficherResultat() {
 			}
 		}
 	});
-
-
 }
 function recommencerQuiz() {
 
