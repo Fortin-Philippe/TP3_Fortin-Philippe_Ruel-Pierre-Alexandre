@@ -174,19 +174,19 @@ function gererBoutonCommencer() {
 //Fonction qui génère le quiz et qui retire le formulaire de départ et l'image de départ.
 //Fonction qui génère le quiz et qui retire le formulaire de départ et l'image de départ.
 function GenererQuiz() {
-    const formulaireDepart = document.getElementById("formulaireDepart");
-    const imgDepart = document.getElementById("imgDepart");
+	const formulaireDepart = document.getElementById("formulaireDepart");
+	const imgDepart = document.getElementById("imgDepart");
 
-    if (formulaireDepart) {
-        formulaireDepart.remove();
-    }
+	if (formulaireDepart) {
+		formulaireDepart.remove();
+	}
 
-    if (imgDepart) {
-        imgDepart.remove();
-    }
-    
-    SalutationsHeader();
-    AffichageQuestion(0);
+	if (imgDepart) {
+		imgDepart.remove();
+	}
+
+	SalutationsHeader();
+	AffichageQuestion(0);
 }
 
 //Fonction qui fait référence à une divSalutations dans le html dans laquelle il y a p qui salut l'utilisateur avec son nom et prénom.
@@ -328,7 +328,7 @@ function AfficherResultat() {
 	//On limite le nombre de chiffre après la virgule à 2.
 	const pourcentageFormate = pourcentageResultat.toFixed(2);
 
-	
+
 
 	//On crée une div pour positionner avec bootstrap.
 	let divPositionTexte = document.getElementById("divPositionnement");
@@ -383,9 +383,9 @@ function AfficherResultat() {
 	divTextResultat.appendChild(btnRecommencer);
 
 	let divChartDoughnut = document.getElementById("divChartDoughnut");
-	divChartDoughnut.style.display="block";
-	divChartDoughnut.style.width="50%";
-	divChartDoughnut.style.padding="20px";
+	divChartDoughnut.style.display = "block";
+	divChartDoughnut.style.width = "40%";
+	divChartDoughnut.style.padding = "20px";
 	let canvaDoughnut = document.getElementById("myChartDoughnut");
 	divChartDoughnut.appendChild(canvaDoughnut);
 	let nombreDeMauvaiseReponse = donnees.length - nombreDeBonneReponses;
@@ -395,85 +395,85 @@ function AfficherResultat() {
 			labels: ["Bonne Réponse", "Mauvaise Réponse"],
 			datasets: [{
 				data: [nombreDeBonneReponses, nombreDeMauvaiseReponse],
-				backgroundColor: ["#3e5641","#d36135"],
+				backgroundColor: ["#3e5641", "#d36135"],
 			}]
 		}
 	});
-	let divChartLine= document.getElementById("divChartLine");
-	divChartLine.style.display="block";
-	divChartLine.style.width= "50%";
+	let divChartLine = document.getElementById("divChartLine");
+	divChartLine.style.display = "block";
+	divChartLine.style.width = "100%";
 	divChartLine.style.padding = "20px";
 	let canvaLine = document.getElementById("myChartLine");
 	divChartLine.appendChild(canvaLine);
 
 	let chartLine = new Chart(canvaLine, {
 		type: "line",
-		data:{
-			labels:["Resultat précédent", "Résultat actuel"],
-			datasets:[{
+		data: {
+			labels: ["Resultat précédent", "Résultat actuel"],
+			datasets: [{
 				label: "Pourcentage de réussite",
-				data:[ 35,40],
+				data: [35, 40],
 				borderColor: "red",
 				fill: false
 			}]
 		},
 		options: {
-		scales:{
-			y:{
-				beginAtZero: true,
-				max: 100
+			scales: {
+				y: {
+					beginAtZero: true,
+					max: 100
+				}
 			}
 		}
-	}
 	});
 
 
 }
 function recommencerQuiz() {
-    
-    reponsesUtilisateur = [];
-	
-    // Obtenir les références des éléments à vider
-    const quizContainer = document.getElementById("quiz-container");
-    const resultContainer = document.getElementById("result-container");
-    const divSalutations = document.getElementById("divSalutations");
-    const avancementQuestion = document.getElementById("avancementQuestion");
-    const divImage = document.getElementById("divImage");
-    const divTextResultat = document.getElementById("divTextResultat");
-    const divChartDoughnut = document.getElementById("divChartDoughnut");
-    const divProgress = document.getElementById("progressbarID");
 
-    // Vider le contenu textuel des éléments sans supprimer les enfants
-    if (quizContainer) {
-        quizContainer.textContent = "";
-    }
-    if (resultContainer) {
-        resultContainer.textContent = "";
-    }
-    if (divSalutations) {
-        divSalutations.textContent = "";
-    }
-    if (avancementQuestion) {
-        avancementQuestion.textContent = "";
-    }
+	reponsesUtilisateur = [];
+
+	// Obtenir les références des éléments à vider
+	const quizContainer = document.getElementById("quiz-container");
+	const resultContainer = document.getElementById("result-container");
+	const divSalutations = document.getElementById("divSalutations");
+	const avancementQuestion = document.getElementById("avancementQuestion");
+	const divImage = document.getElementById("divImage");
+	const divTextResultat = document.getElementById("divTextResultat");
+	const divChartDoughnut = document.getElementById("divChartDoughnut");
+	const divProgress = document.getElementById("progressbarID");
+
+	// Vider le contenu textuel des éléments sans supprimer les enfants
+	if (quizContainer) {
+		quizContainer.textContent = "";
+	}
+	if (resultContainer) {
+		resultContainer.textContent = "";
+	}
+	if (divSalutations) {
+		divSalutations.textContent = "";
+	}
+	if (avancementQuestion) {
+		avancementQuestion.textContent = "";
+	}
 	if (divImage) {
-        divImage.textContent = "";
-    }
-    if (divTextResultat) {
-        divTextResultat.textContent = "";
-    }
-    if (divChartDoughnut) {
-        divChartDoughnut.innerHTML = "";
-    }
+		divImage.textContent = "";
+	}
+	if (divTextResultat) {
+		divTextResultat.textContent = "";
+	}
+	if (divChartDoughnut) {
+		divChartDoughnut.innerHTML = "";
+	}
 
-    // Réinitialiser la barre de progression
-    if (divProgress) {
-        divProgress.style.width = "0%";
-        divProgress.style.display = "none"; // Masquer la barre de progression
-    }
+	// Réinitialiser la barre de progression
+	if (divProgress) {
+		divProgress.style.width = "0%";
+		divProgress.style.display = "none"; // Masquer la barre de progression
+	}
 
-    // Générer à nouveau le quiz à partir de la première question
-    GenererQuiz();
+	// Générer à nouveau le quiz à partir de la première question
+	GenererQuiz();
 }
 //Fonction qui enregistre le nombre de bonne réponse. 
 function ObtenirNombreDeBonneReponse() {
