@@ -434,9 +434,9 @@ function recommencerQuiz() {
     const avancementQuestion = document.getElementById("avancementQuestion");
     const divImage = document.getElementById("divImage");
     const divTextResultat = document.getElementById("divTextResultat");
-    const canvaLine = document.getElementById("canvaDoughnut");
+    const canvaLine = document.getElementById("myChartDoughnut");
     const divProgress = document.getElementById("progressbarID");
-	const canvaDoughnut = document.getElementById("canvaDoughnut");
+	const canvaDoughnut = document.getElementById("myChartDoughnut");
     // Vider le contenu textuel des éléments sans supprimer les enfants
     if (quizContainer) {
         quizContainer.textContent = "";
