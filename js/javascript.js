@@ -376,12 +376,12 @@ function AfficherResultat() {
     divTextResultat.appendChild(btnRecommencer);
 
 	//Affichage du doughnut
-	let divChartDoughnut = document.getElementById("divChartDoughnut");
-	divChartDoughnut.style.display = "block";
-	divChartDoughnut.style.width = "40%";
-	divChartDoughnut.style.padding = "20px";
 	let canvaDoughnut = document.getElementById("myChartDoughnut");
-	divChartDoughnut.appendChild(canvaDoughnut);
+	canvaDoughnut.style.display = "block";
+	canvaDoughnut.style.width = "40%";
+	canvaDoughnut.style.padding = "20px";
+	
+	
 	let nombreDeMauvaiseReponse = donnees.length - nombreDeBonneReponses;
 	let chartDoughnut = new Chart(canvaDoughnut, {
 		type: "doughnut",
@@ -394,12 +394,12 @@ function AfficherResultat() {
 		}
 	});
 	//Affichage du diagramme à ligne.
-	let divChartLine = document.getElementById("divChartLine");
-	divChartLine.style.display = "block";
-	divChartLine.style.width = "100%";
-	divChartLine.style.padding = "20px";
 	let canvaLine = document.getElementById("myChartLine");
-	divChartLine.appendChild(canvaLine);
+	canvaLine.style.display = "block";
+	canvaLine.style.width = "100%";
+	canvaLine.style.padding = "20px";
+
+
 
 	let chartLine = new Chart(canvaLine, {
 		type: "line",
@@ -434,15 +434,15 @@ function recommencerQuiz() {
     const avancementQuestion = document.getElementById("avancementQuestion");
     const divImage = document.getElementById("divImage");
     const divTextResultat = document.getElementById("divTextResultat");
-    const divChartDoughnut = document.getElementById("divChartDoughnut");
+    const canvaLine = document.getElementById("canvaDoughnut");
     const divProgress = document.getElementById("progressbarID");
-	const divChartLine = document.getElementById("divChartLine");
+	const canvaDoughnut = document.getElementById("canvaDoughnut");
     // Vider le contenu textuel des éléments sans supprimer les enfants
     if (quizContainer) {
         quizContainer.textContent = "";
     }
-	if (divChartLine) {
-        divChartLine.textContent = "";
+	if (canvaLine) {
+        canvaLine.textContent = "";
     }
     if (resultContainer) {
         resultContainer.textContent = "";
@@ -459,8 +459,8 @@ function recommencerQuiz() {
     if (divTextResultat) {
         divTextResultat.textContent = "";
     }
-    if (divChartDoughnut) {
-        divChartDoughnut.innerHTML = "";
+    if (canvaDoughnut) {
+        canvaDoughnut.innerHTML = "";
     }
 
     // Réinitialiser la barre de progression
