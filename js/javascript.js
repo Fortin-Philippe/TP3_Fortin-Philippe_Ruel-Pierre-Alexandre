@@ -73,6 +73,7 @@ let nomUtilisateur;
 let reponsesUtilisateur = [];
 let divProgress = document.getElementById("progressbarID");
 
+
 divProgress.style.display = "none";
 function gererBoutonCommencer() {
 	// Retirer cette alert une fois le bouton complété
@@ -166,17 +167,25 @@ function gererBoutonCommencer() {
 		GenererQuiz();
 	}
 }
+
+
+// Fonction pour recommencer le quiz
+
 //Fonction qui génère le quiz et qui retire le formulaire de départ et l'image de départ.
 function GenererQuiz() {
+    const formulaireDepart = document.getElementById("formulaireDepart");
+    const imgDepart = document.getElementById("imgDepart");
 
-	const formulaireDepart = document.getElementById("formulaireDepart");
-	formulaireDepart.remove();
-	const imgDepart = document.getElementById("imgDepart");
-	imgDepart.remove();
-	SalutationsHeader();
+    if (formulaireDepart) {
+        formulaireDepart.remove();
+    }
 
-	AffichageQuestion(0);
-
+    if (imgDepart) {
+        imgDepart.remove();
+    }
+    
+    SalutationsHeader();
+    AffichageQuestion(0);
 }
 
 //Fonction qui fait référence à une divSalutations dans le html dans laquelle il y a p qui salut l'utilisateur avec son nom et prénom.
@@ -318,6 +327,8 @@ function AfficherResultat() {
 	//On limite le nombre de chiffre après la virgule à 2.
 	const pourcentageFormate = pourcentageResultat.toFixed(2);
 
+	
+
 	//On crée une div pour positionner avec bootstrap.
 	let divPositionTexte = document.getElementById("divPositionnement");
 	divPositionTexte.id = "divPositionTexte";
@@ -363,13 +374,10 @@ function AfficherResultat() {
 		divImage.appendChild(imageEchec);
 		imageEchec.classList.add("img-fluid");
 	}
-	//Affichage du doughnut
-	let divChartDoughnut = document.getElementById("divChartDoughnut");
-	divChartDoughnut.style.display="block";
-	divChartDoughnut.style.width="50%";
-	divChartDoughnut.style.padding="20px";
-	let canvaDoughnut = document.getElementById("myChartDoughnut");
-	divChartDoughnut.appendChild(canvaDoughnut);
+	let divChart = document.getElementById("divChart");
+	divChart.style.display="block";
+	let canva = document.getElementById("myChart");
+	divChart.appendChild(canva);
 	let nombreDeMauvaiseReponse = donnees.length - nombreDeBonneReponses;
 	let chartDoughnut = new Chart(canvaDoughnut, {
 		type: "doughnut",
@@ -383,6 +391,7 @@ function AfficherResultat() {
 	});
 
 }
+
 
 //Fonction qui enregistre le nombre de bonne réponse. 
 function ObtenirNombreDeBonneReponse() {
@@ -419,7 +428,8 @@ function initialisation() {
 
 	document.getElementById("btnCommencer").addEventListener("click", gererBoutonCommencer);
 	document.getElementById("btnIgnorer").addEventListener("click", refreshInfo);
-	// Passer à la question suivante
+
+
 
 	// TODO...
 }
