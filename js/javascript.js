@@ -363,24 +363,26 @@ function AfficherResultat() {
 		divImage.appendChild(imageEchec);
 		imageEchec.classList.add("img-fluid");
 	}
-	let divChart = document.getElementById("divChart");
-	divChart.style.display="block";
-	let canva = document.getElementById("myChart");
-	divChart.appendChild(canva);
+	//Affichage du doughnut
+	let divChartDoughnut = document.getElementById("divChartDoughnut");
+	divChartDoughnut.style.display="block";
+	divChartDoughnut.style.width="50%";
+	divChartDoughnut.style.padding="20px";
+	let canvaDoughnut = document.getElementById("myChartDoughnut");
+	divChartDoughnut.appendChild(canvaDoughnut);
 	let nombreDeMauvaiseReponse = donnees.length - nombreDeBonneReponses;
-	let chart = new Chart(canva, {
+	let chartDoughnut = new Chart(canvaDoughnut, {
 		type: "doughnut",
 		data: {
 			labels: ["Bonne Réponse", "Mauvaise Réponse"],
 			datasets: [{
 				data: [nombreDeBonneReponses, nombreDeMauvaiseReponse],
-				backgroundColor: ["#d36135", "#3e5641"],
+				backgroundColor: ["#3e5641","#d36135"],
 			}]
 		}
-
 	});
-}
 
+}
 
 //Fonction qui enregistre le nombre de bonne réponse. 
 function ObtenirNombreDeBonneReponse() {
