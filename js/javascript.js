@@ -72,7 +72,7 @@ let prenomUtilisateur;
 let nomUtilisateur;
 let reponsesUtilisateur = [];
 let divProgress = document.getElementById("progressbarID");
-
+let pourcentageResultats = [];
 
 divProgress.style.display = "none";
 function gererBoutonCommencer() {
@@ -326,6 +326,8 @@ function AfficherResultat() {
 	const pourcentageResultat = (nombreDeBonneReponses / donnees.length) * 100;
 	const pourcentageFormate = pourcentageResultat.toFixed(2);
 
+	pourcentageResultats.push(pourcentageResultat);
+
 	let divPositionTexte = document.getElementById("divPositionnement");
 	if (!divPositionTexte) {
 		divPositionTexte = document.createElement("div");
@@ -394,7 +396,7 @@ function AfficherResultat() {
 		}
 	});
 
-
+}
 function recommencerQuiz() {
 
 	reponsesUtilisateur = [];
@@ -438,35 +440,45 @@ function recommencerQuiz() {
 
 	// Générer à nouveau le quiz à partir de la première question
 	GenererQuiz();
-	let canvaLine = document.getElementById("myChartLine");
-	canvaLine.style.display = "block";
-	canvaLine.style.width = "100%";
-	canvaLine.style.padding = "20px";
 
 
 
-	let chartLine = new Chart(canvaLine, {
-		type: "line",
-		data: {
-			labels: ["Resultat précédent", "Résultat actuel"],
-			datasets: [{
-				label: "Pourcentage de réussite",
-				data: [35, 40],
-				borderColor: ["red"],
-				fill: false
-			}]
-		},
-		options: {
-			scales: {
-				y: {
-					beginAtZero: true,
-					max: 100
+	if (pourcentageResultats.length > 1) {
+		let canvaLine = document.getElementById("myChartLine");
+		canvaLine.style.display = "block";
+		canvaLine.style.width = "100%";
+		canvaLine.style.padding = "20px";
+
+		let labels = [];
+		let data = [];
+		for (let i = 0; i < pourcentageResultats.length; i++) {
+			labels.push(`Essai ${i +1}`);
+			data.push(pourcentageResultats[i]);
+		}
+
+		const chartLine = new Chart(canvaLine, {
+			type: "line",
+			data: {
+				labels: labels,
+				datasets: [{
+					label: "Pourcentage de réussite",
+					data: data,
+					borderColor: "red",
+					fill: false
+				}]
+			},
+			options: {
+				scales: {
+					y: {
+						beginAtZero: true,
+						max: 100
+					}
 				}
 			}
-		}
-	});
+		});
+	}
 }
-}
+
 //Fonction qui enregistre le nombre de bonne réponse. 
 function ObtenirNombreDeBonneReponse() {
 	let nombreDeBonneReponses = 0;
